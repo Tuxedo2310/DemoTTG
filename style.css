@@ -1,0 +1,933 @@
+/* Google Fonts - Noto Sans Vietnamese for body, Poppins for headings */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Vietnamese:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+    /* Colors */
+    --primary-color: #003366; /* Màu xanh đậm công an */
+    --secondary-color: #ffcc00; /* Màu vàng nổi bật */
+    --accent-blue: #0056b3; /* Xanh lam nhấn */
+    --text-dark: #333333;
+    --text-light: #ffcc00;
+    --bg-light: #f4f7f6; /* Nền nhẹ nhàng */
+    --bg-white: #ffffff;
+    --border-light: #e0e0e0;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+
+    /* Typography */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Noto Sans Vietnamese', sans-serif;
+    --font-size-base: 16px;
+
+    /* Spacing & Sizing */
+    --container-max-width: 1200px;
+    --padding-section: 40px;
+    --spacing-small: 10px;
+    --spacing-medium: 20px;
+    --spacing-large: 30px;
+    --spacing-xl: 40px;
+
+    /* Borders & Shadows */
+    --border-radius-base: 8px;
+    --border-radius-circle: 50%;
+
+    /* Transitions */
+    --transition-speed-fast: 0.2s;
+    --transition-speed-normal: 0.3s;
+    --transition-speed-slow: 0.4s;
+}
+
+/* --- Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color var(--transition-speed-normal) ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul {
+    list-style: disc;
+    margin-left: var(--spacing-medium);
+}
+
+/* --- Utility Classes --- */
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-medium);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Header --- */
+.main-header {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 15px 0;
+    border-bottom: 5px solid var(--secondary-color);
+    box-shadow: 0 4px 10px var(--shadow-medium);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap; /* Giữ các mục trên một hàng, sẽ xử lý ẩn tiêu đề trên mobile */
+    position: relative;
+    gap: 15px; /* Thêm khoảng cách giữa các phần tử */
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.logo {
+    height: 80px; /* Adjust logo size */
+    width: auto;
+    object-fit: contain;
+}
+
+.site-title {
+    /* Cho phép tiêu đề co lại nếu cần, nhưng ưu tiên hiển thị */
+    flex-shrink: 1;
+    min-width: 0; /* Cho phép nội dung co lại nếu quá dài */
+}
+
+.site-title h1 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--text-light);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    white-space: nowrap; /* Ngăn tiêu đề chính bị xuống dòng */
+    overflow: hidden; /* Ẩn phần bị tràn nếu quá dài */
+    text-overflow: ellipsis; /* Thêm dấu ba chấm nếu bị cắt */
+}
+
+/* Updated: Sửa lại font chữ cho TRẠI TẠM GIAM */
+.site-title h2 {
+    margin: 5px 0 0 0;
+    font-family: var(--font-heading); /* Sử dụng cùng font-heading */
+    font-size: 1.5em;
+    font-weight: 600; /* Tăng độ đậm để nổi bật hơn */
+    color: var(--secondary-color);
+    white-space: nowrap; /* Ngăn tiêu đề phụ bị xuống dòng */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* NEW: Current Date/Time Display */
+.current-datetime {
+    position: absolute; /* Định vị tuyệt đối */
+    top: 10px; /* Cách đỉnh 10px */
+    right: 20px; /* Cách lề phải 20px */
+    color: var(--secondary-color); /* Màu chữ vàng */
+    font-family: var(--font-body); /* Sử dụng font body */
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: right;
+    white-space: nowrap; /* Ngăn không cho chữ bị xuống dòng */
+    background-color: rgba(0, 0, 0, 0.2); /* Nền mờ */
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 10; /* Đảm bảo nó nằm trên các thành phần khác nếu có chồng lấn */
+}
+/* Adjust for smaller screens where datetime might overlap or be too close */
+@media (max-width: 992px) {
+    .current-datetime {
+        top: 5px;
+        right: 10px;
+        font-size: 0.8em;
+    }
+    .site-title h1 {
+        font-size: 1.8em; /* Giảm kích thước trên tablet */
+    }
+    .site-title h2 {
+        font-size: 1.2em; /* Giảm kích thước trên tablet */
+    }
+}
+@media (max-width: 768px) {
+    .current-datetime {
+        position: static; /* Stack naturally in mobile layout */
+        width: auto; /* Allow width to be natural */
+        margin-left: var(--spacing-small); /* Push to right if space available */
+        padding: 3px 8px; /* Giảm padding */
+        background-color: transparent; /* No background in mobile header */
+        color: var(--text-light); /* White text in mobile header */
+        font-size: 0.75em;
+        text-align: right;
+    }
+    .header-content {
+        flex-wrap: nowrap; /* Prevent wrapping in mobile header to keep toggle on right */
+        justify-content: space-between;
+    }
+    .site-title {
+        display: none; /* Hide full title on small screens */
+    }
+    .logo-area {
+        flex-grow: 1; /* Allow logo area to grow to push datetime/toggle */
+        justify-content: flex-start;
+    }
+}
+
+
+.menu-toggle {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 2.2em;
+    cursor: pointer;
+    display: none; /* Hidden on desktop, shown on mobile */
+    z-index: 1002; /* Above nav bar for mobile */
+}
+
+/* --- Navigation Bar --- */
+.navbar {
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 8px var(--shadow-light);
+    position: sticky; /* Sticky navigation */
+    top: 0;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 15px var(--spacing-medium);
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color var(--transition-speed-normal) ease,
+                color var(--transition-speed-normal) ease,
+                transform var(--transition-speed-fast) ease, /* Thêm transition cho transform */
+                box-shadow var(--transition-speed-fast) ease; /* Thêm transition cho box-shadow */
+    gap: 8px;
+    position: relative; /* Cần cho hiệu ứng bóng */
+    overflow: hidden; /* Đảm bảo shadow không tràn ra ngoài */
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: var(--accent-blue);
+    color: var(--secondary-color);
+    transform: translateY(-2px); /* Di chuyển lên 2px khi hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Thêm bóng khi hover */
+    z-index: 1; /* Đảm bảo nó nằm trên các item khác khi hover để bóng không bị cắt */
+}
+
+.nav-icon {
+    font-size: 1.1em;
+}
+
+/* --- Submenu (Re-designed) --- */
+.has-submenu > .nav-link .submenu-icon {
+    margin-left: 8px;
+    font-size: 0.8em;
+    transition: transform var(--transition-speed-normal) ease;
+}
+
+/* For desktop hover effect */
+@media (min-width: 769px) {
+    .has-submenu:hover .submenu {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible; /* Ensure it's visible for interaction */
+    }
+
+    .has-submenu:hover > .nav-link .submenu-icon {
+        transform: rotate(180deg);
+    }
+}
+
+/* For JS controlled open state (primarily mobile, but also for active parent) */
+.has-submenu.open > .nav-link .submenu-icon {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--accent-blue);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 240px; /* Tăng chiều rộng submenu */
+    box-shadow: 0 5px 15px var(--shadow-medium);
+    z-index: 1001;
+    display: none; /* Controlled by JS / media query */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity var(--transition-speed-normal) ease-out, transform var(--transition-speed-normal) ease-out;
+    border-radius: 0 0 var(--border-radius-base) var(--border-radius-base);
+    overflow: hidden; /* For smooth border-radius transition */
+    visibility: hidden; /* Hide completely from screen readers and interaction */
+}
+
+/* Show submenu when 'open' class is applied by JS */
+.has-submenu.open .submenu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.submenu li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Đường viền nhẹ giữa các mục, tăng độ đậm */
+}
+.submenu li:last-child {
+    border-bottom: none;
+}
+
+.submenu li a {
+    display: block;
+    padding: 12px var(--spacing-medium);
+    color: var(--text-light);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color var(--transition-speed-normal) ease, color var(--transition-speed-normal) ease, padding-left var(--transition-speed-fast) ease; /* Thêm transition cho padding */
+    font-size: 0.98em; /* Kích thước chữ hơi tăng */
+    position: relative;
+}
+
+.submenu li a:hover,
+.submenu li a.active { /* Add active state for submenu items */
+    background-color: #007bff; /* Màu xanh sáng hơn khi hover/active */
+    color: var(--secondary-color);
+    padding-left: calc(var(--spacing-medium) + 10px); /* Dịch sang phải một chút khi hover */
+}
+.submenu li a:active { /* For touch devices */
+    background-color: #0069d9;
+}
+
+
+/* --- Main Content Sections --- */
+.main-content {
+    padding: var(--padding-section) 0;
+    min-height: 600px; /* Ensure content area has minimum height */
+}
+
+.tab-section {
+    background-color: var(--bg-white);
+    padding: var(--spacing-large);
+    margin-bottom: var(--spacing-medium);
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 2px 8px var(--shadow-light);
+    animation: fadeIn 0.6s ease-in-out; /* Fade-in animation for sections */
+}
+
+.tab-section h2 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    font-size: 2.5em;
+    margin-bottom: var(--spacing-medium);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+}
+
+.tab-section h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-top: var(--spacing-large);
+    margin-bottom: 15px;
+}
+
+.tab-section p {
+    margin-bottom: 15px;
+    text-align: justify;
+    font-size: 1em;
+}
+
+.tab-section ul {
+    list-style: disc;
+    margin-left: var(--spacing-medium);
+    margin-bottom: 15px;
+}
+
+.tab-section ul li {
+    margin-bottom: 8px;
+}
+
+.tab-section .sub-heading {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    font-size: 1.6em;
+    margin-top: var(--spacing-large);
+    margin-bottom: var(--spacing-medium);
+    border-bottom: 1px dashed var(--border-light);
+    padding-bottom: 10px;
+}
+
+/* --- News Section Styling (Home Page) --- */
+.news-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-large);
+    margin-top: var(--spacing-large);
+}
+
+.news-card {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-base);
+    overflow: hidden;
+    box-shadow: 0 4px 10px var(--shadow-light);
+    transition: transform var(--transition-speed-normal) ease, box-shadow var(--transition-speed-normal) ease;
+    display: flex;
+    flex-direction: column; /* Stack image and content */
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px var(--shadow-medium);
+}
+
+.news-image {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.news-content {
+    padding: var(--spacing-medium);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Make content grow to fill space */
+}
+
+.news-title {
+    font-family: var(--font-heading);
+    font-size: 1.3em;
+    margin-bottom: var(--spacing-small);
+    line-height: 1.4;
+}
+
+.news-title a {
+    color: var(--primary-color);
+    transition: color var(--transition-speed-normal) ease;
+}
+
+.news-title a:hover {
+    color: var(--accent-blue);
+}
+
+.news-meta {
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: var(--spacing-small);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.news-meta i {
+    color: var(--secondary-color);
+}
+
+.news-summary {
+    font-size: 0.95em;
+    margin-bottom: var(--spacing-medium);
+    flex-grow: 1; /* Allow summary to grow */
+}
+
+.read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--accent-blue);
+    font-weight: 500;
+    transition: color var(--transition-speed-fast) ease;
+    margin-top: auto; /* Push to bottom */
+}
+
+.read-more:hover {
+    color: var(--primary-color);
+}
+
+
+/* --- Leader Sections (Lãnh đạo qua các thời kỳ, Lãnh đạo hiện nay) --- */
+.leader-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-large);
+    margin-top: var(--spacing-large);
+    justify-content: center;
+}
+
+.leader-card {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-base);
+    padding: var(--spacing-medium);
+    text-align: center;
+    box-shadow: 0 4px 10px var(--shadow-light);
+    transition: transform var(--transition-speed-normal) ease, box-shadow var(--transition-speed-normal) ease;
+}
+
+.leader-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px var(--shadow-medium);
+}
+
+.leader-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: var(--border-radius-circle);
+    object-fit: cover;
+    margin: 0 auto 15px;
+    border: 3px solid var(--secondary-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.leader-name {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.leader-position,
+.leader-tenure,
+.leader-phone {
+    font-size: 0.95em;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.leader-list.current-leaders .leader-card {
+    background-color: #e0f2f7; /* Light blue background for current leaders */
+    border-color: #007bff;
+}
+
+/* --- Unit Detail Pages (for each individual unit section) --- */
+.unit-commander-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-medium);
+    margin-top: var(--spacing-large);
+    padding-top: var(--spacing-medium);
+    border-top: 1px dashed var(--border-light);
+}
+
+.commander-photo-lg {
+    width: 120px;
+    height: 120px;
+    border-radius: var(--border-radius-circle);
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    flex-shrink: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.commander-details p {
+    margin: 0;
+    font-size: 1.05em;
+    color: var(--text-dark);
+}
+.commander-details p strong {
+    color: var(--primary-color);
+}
+
+
+/* --- Contact Section --- */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: var(--spacing-medium);
+}
+
+.contact-info p {
+    font-size: 1.1em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.contact-icon {
+    margin-right: 12px;
+    color: var(--primary-color);
+    font-size: 1.3em;
+}
+
+.map-container {
+    margin-top: var(--spacing-medium);
+    border-radius: var(--border-radius-base);
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: #002244; /* Đã thay đổi màu nền của footer */
+    color: var(--text-light);
+    padding: 25px 0;
+    text-align: center;
+    font-size: 0.9em;
+    border-top: 5px solid var(--secondary-color);
+    box-shadow: 0 -2px 8px var(--shadow-medium);
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive Design --- */
+
+/* Tablet (769px to 992px) */
+@media (max-width: 992px) {
+    .site-title h1 {
+        font-size: 1.8em;
+    }
+    .site-title h2 {
+        font-size: 1.2em;
+    }
+    .nav-list {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    .nav-link {
+        padding: 12px 18px;
+    }
+    .tab-section h2 {
+        font-size: 2em;
+    }
+    .tab-section h3 {
+        font-size: 1.6em;
+    }
+    .news-title {
+        font-size: 1.2em;
+    }
+}
+
+/* Mobile (up to 768px) */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo-area {
+        flex-grow: 1;
+        justify-content: flex-start;
+    }
+    .site-title {
+        display: none;
+    }
+    .logo {
+        height: 60px;
+    }
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 51, 102, 0.95);
+        transform: translateX(100%);
+        transition: transform 0.4s ease-out;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 100px;
+        box-shadow: none;
+        overflow-y: auto;
+    }
+
+    .navbar.active {
+        transform: translateX(0);
+    }
+
+    .nav-list {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+    }
+
+    .nav-item {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .nav-item:last-child {
+        border-bottom: none;
+    }
+
+    .nav-link {
+        padding: 15px 20px;
+        justify-content: center;
+        font-size: 1.1em;
+    }
+
+    /* Submenu on mobile: static and controlled by JS 'open' class */
+    .submenu {
+        position: static;
+        width: 100%;
+        background-color: rgba(0, 70, 130, 0.95); /* Tăng độ đậm nền trên mobile */
+        box-shadow: none;
+        border-radius: 0;
+        transform: translateY(0);
+        opacity: 1;
+        padding-bottom: 0; /* Bỏ padding-bottom vì border đã xử lý khoảng cách */
+        display: none; /* Hide by default on mobile, revealed by JS with 'open' class */
+        visibility: visible; /* Ensure it's visible when displayed */
+    }
+
+    .has-submenu.open .submenu {
+        display: block;
+    }
+
+    .submenu li a {
+        padding: 12px 20px 12px 40px; /* Indent submenu items */
+        color: var(--text-light); /* Đảm bảo màu chữ sáng */
+    }
+
+    .submenu li a:hover,
+    .submenu li a.active {
+        background-color: rgba(0, 80, 150, 0.9); /* Màu nền hover rõ ràng hơn trên mobile */
+        color: var(--secondary-color);
+        padding-left: 45px; /* Dịch vào thêm một chút khi hover trên mobile */
+    }
+
+    .tab-section {
+        padding: 20px;
+    }
+
+    .tab-section h2 {
+        font-size: 1.8em;
+    }
+
+    .news-card {
+        flex-direction: column; /* Stack image and content on mobile */
+    }
+    .news-image {
+        height: 180px;
+    }
+
+    .leader-list {
+        grid-template-columns: 1fr; /* Stack leader cards on mobile */
+    }
+    .leader-card {
+        padding: 15px;
+    }
+    .leader-photo {
+        width: 100px;
+        height: 100px;
+    }
+    .leader-name {
+        font-size: 1.4em;
+    }
+    .leader-position, .leader-tenure, .leader-phone {
+        font-size: 0.9em;
+    }
+    .unit-commander-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    .commander-photo-lg {
+        margin: 0 auto;
+    }
+    .commander-details p {
+        text-align: center;
+    }
+    .tab-section .sub-heading {
+        font-size: 1.5em;
+    }
+}
+
+/* Very Small Mobile (up to 480px) */
+@media (max-width: 480px) {
+    .logo {
+        height: 50px;
+    }
+    .menu-toggle {
+        font-size: 1.8em;
+    }
+    .tab-section h2 {
+        font-size: 1.5em;
+    }
+    .tab-section p, .contact-info p, .news-summary {
+        font-size: 0.95em;
+    }
+}
+/* Styling for News Article Detail Pages */
+.news-detail-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: var(--border-radius-base);
+    margin-bottom: var(--spacing-medium);
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+.news-meta-full {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: var(--spacing-medium);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px dashed var(--border-light);
+    padding-bottom: 10px;
+}
+
+.news-meta-full i {
+    color: var(--primary-color);
+}
+
+.back-to-news {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-top: var(--spacing-medium);
+    padding: 8px 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius-base);
+    transition: background-color var(--transition-speed-normal) ease, color var(--transition-speed-normal) ease;
+}
+
+.back-to-news:hover {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+/* Sub-tab navigation within main tabs (e.g., within Home) */
+.sub-tab-navigation {
+    display: flex;
+    justify-content: flex-start; /* Align tabs to the start */
+    border-bottom: 2px solid var(--border-light);
+    margin-bottom: var(--spacing-medium);
+    flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
+    gap: 10px; /* Space between tab links */
+}
+
+.sub-tab-link {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: all var(--transition-speed-normal) ease;
+    border-bottom: 2px solid transparent; /* For active state underline */
+    margin-bottom: -2px; /* Pulls the border up to overlap parent border */
+}
+
+.sub-tab-link:hover {
+    color: var(--primary-color); /* Sử dụng primary-color cho hover thay vì primary-color-dark */
+    border-color: var(--accent-blue); /* Sử dụng accent-blue cho hover thay vì primary-color-light */
+}
+
+.sub-tab-link.active {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: 700;
+}
+
+.sub-tab-content {
+    padding-top: var(--spacing-medium);
+}
+
+.sub-tab-content.hidden {
+    display: none;
+}
+
+/* Specific styling for guidance section lists */
+.guidance-section ul {
+    list-style-type: disc; /* Or 'decimal' if preferred */
+    margin-left: 20px;
+    margin-bottom: var(--spacing-medium);
+}
+
+.guidance-section ul ul {
+    list-style-type: circle; /* Sub-lists use a different bullet */
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.guidance-section li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.guidance-section h3 {
+    color: var(--primary-color); /* Sử dụng primary-color thay vì primary-color-dark */
+    margin-top: var(--spacing-large);
+    margin-bottom: var(--spacing-small);
+    font-size: 1.3em;
+    border-bottom: 1px dashed var(--border-light);
+    padding-bottom: 5px;
+}

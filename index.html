@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trại Tạm Giam - Công an Tỉnh Nghệ An</title> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content container">
+            <div class="logo-area">
+                <a href="#home" class="logo-link">
+                    <img src="images/logo-cand.png" alt="Logo Công an nhân dân" class="logo">
+                    <div class="site-title">
+                        <h1>CÔNG AN TỈNH NGHỆ AN</h1>
+                        <h2>TRẠI TẠM GIAM</h2>
+                    </div>
+                </a>
+            </div>
+            <div class="current-datetime" id="current-datetime">
+            </div>
+            <button class="menu-toggle" id="menu-toggle-btn" aria-label="Mở/đóng menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <nav class="navbar" id="main-nav">
+        <ul class="nav-list container">
+            <li class="nav-item">
+                <a href="#home" class="nav-link" data-tab-id="home">
+                    <i class="fas fa-home nav-icon"></i> Home
+                </a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#" class="nav-link parent-link" data-tab-parent="gioi-thieu">
+                    <i class="fas fa-info-circle nav-icon"></i> Giới thiệu <i class="fas fa-chevron-down submenu-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#about" class="submenu-link" data-tab-id="about">Giới thiệu chung</a></li>
+                    <li><a href="#mission" class="submenu-link" data-tab-id="mission">Chức năng - Nhiệm vụ</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#history" class="nav-link" data-tab-id="history">
+                    <i class="fas fa-history nav-icon"></i> Lịch sử trại
+                </a>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#" class="nav-link parent-link" data-tab-parent="leaders">
+                    <i class="fas fa-users-cog nav-icon"></i> Lãnh đạo <i class="fas fa-chevron-down submenu-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#past-leaders" class="submenu-link" data-tab-id="past-leaders">Lãnh đạo qua các thời kỳ</a></li>
+                    <li><a href="#current-leaders" class="submenu-link" data-tab-id="current-leaders">Lãnh đạo hiện nay</a></li>
+                </ul>
+            </li>
+            <li class="nav-item has-submenu">
+                <a href="#" class="nav-link parent-link" data-tab-parent="units">
+                    <i class="fas fa-building nav-icon"></i> Các Đội công tác <i class="fas fa-chevron-down submenu-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#tham-muu-hau-can" class="submenu-link" data-tab-id="tham-muu-hau-can">Đội Tham mưu - Hậu cần</a></li>
+                    <li><a href="#quan-giao" class="submenu-link" data-tab-id="quan-giao">Đội Quản giáo</a></li>
+                    <li><a href="#canh-sat-bao-ve" class="submenu-link" data-tab-id="canh-sat-bao-ve">Đội Cảnh sát bảo vệ</a></li>
+                    <li><a href="#phan-trai-quan-ly-pham-nhan" class="submenu-link" data-tab-id="phan-trai-quan-ly-pham-nhan">Phân trại Quản lý phạm nhân</a></li>
+                    <li><a href="#phan-trai-tam-giam-vinh" class="submenu-link" data-tab-id="phan-trai-tam-giam-vinh">Phân trại tạm giam Vinh</a></li>
+                    <li><a href="#phan-trai-tam-giam-do-luong" class="submenu-link" data-tab-id="phan-trai-tam-giam-do-luong">Phân trại tạm giam Đô Lương</a></li>
+                    <li><a href="#phan-trai-tam-giam-thai-hoa" class="submenu-link" data-tab-id="phan-trai-tam-giam-thai-hoa">Phân trại tạm giam Thái Hòa</a></li>
+                    <li><a href="#phan-trai-tam-giam-tuong-duong" class="submenu-link" data-tab-id="phan-trai-tam-giam-tuong-duong">Phân trại tạm giam Tương Dương</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#contact" class="nav-link" data-tab-id="contact">
+                    <i class="fas fa-phone-alt nav-icon"></i> Liên hệ
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-content container">
+        <section id="home" class="tab-section active"> <div class="sub-tab-navigation">
+                <a href="#home-news" class="sub-tab-link active" data-tab-id="home-news" data-tab-group="home-sub-tabs">Tin tức hoạt động</a>
+                <a href="#huong-dan-tham-gap" class="sub-tab-link" data-tab-id="huong-dan-tham-gap" data-tab-group="home-sub-tabs">Hướng dẫn các thủ tục thăm gặp, gửi quà</a>
+            </div>
+
+            <div id="home-news" class="sub-tab-content active" data-tab-group="home-sub-tabs"> <div class="news-list">
+                    <article class="news-card">
+                        <img src="images/news-placeholder-1.jpg" alt="Hoạt động huấn luyện nghiệp vụ" class="news-image">
+                        <div class="news-content">
+                            <h3 class="news-title"><a href="#news-huan-luyen" data-tab-id="news-huan-luyen">Trại Tạm giam tổ chức huấn luyện nghiệp vụ chuyên sâu cho cán bộ</a></h3>
+                            <p class="news-meta"><i class="fas fa-calendar-alt"></i> 15/06/2025 | <i class="fas fa-user-tie"></i> Ban biên tập</p>
+                            <p class="news-summary">Nhằm nâng cao trình độ chuyên môn, kỹ năng xử lý tình huống cho cán bộ, chiến sĩ, Trại Tạm giam Công an tỉnh Nghệ An vừa tổ chức khóa huấn luyện nghiệp vụ định kỳ...</p>
+                            <a href="#news-huan-luyen" data-tab-id="news-huan-luyen" class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <img src="images/news-placeholder-2.jpg" alt="Công tác phòng chống dịch bệnh" class="news-image">
+                        <div class="news-content">
+                            <h3 class="news-title"><a href="#news-dich-benh" data-tab-id="news-dich-benh">Tăng cường công tác phòng, chống dịch bệnh trong Trại Tạm giam</a></h3>
+                            <p class="news-meta"><i class="fas fa-calendar-alt"></i> 10/06/2025 | <i class="fas fa-user-tie"></i> Ban y tế</p>
+                            <p class="news-summary">Trước diễn biến phức tạp của các loại dịch bệnh, Trại Tạm giam đã chủ động triển khai nhiều biện pháp đồng bộ nhằm đảm bảo an toàn sức khỏe cho can phạm nhân và cán bộ...</p>
+                            <a href="#news-dich-benh" data-tab-id="news-dich-benh" class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <img src="images/news-placeholder-3.jpg" alt="Đảm bảo an ninh trật tự" class="news-image">
+                        <div class="news-content">
+                            <h3 class="news-title"><a href="#news-an-ninh" data-tab-id="news-an-ninh">Đảm bảo an ninh, trật tự tuyệt đối trong dịp Lễ lớn</a></h3>
+                            <p class="news-meta"><i class="fas fa-calendar-alt"></i> 05/06/2025 | <i class="fas fa-user-tie"></i> Đội Cảnh sát bảo vệ</p>
+                            <p class="news-summary">Thực hiện chỉ đạo của Công an tỉnh, Trại Tạm giam đã triển khai kế hoạch tăng cường lực lượng, phương tiện, đảm bảo an toàn tuyệt đối cho cơ sở giam giữ trong dịp các ngày lễ quan trọng...</p>
+                            <a href="#news-an-ninh" data-tab-id="news-an-ninh" class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div id="huong-dan-tham-gap" class="sub-tab-content hidden" data-tab-group="home-sub-tabs">
+                <h2>Hướng dẫn các thủ tục thăm gặp, gửi quà</h2>
+                <div class="guidance-section">
+                    <h3>1. Thủ tục thăm gặp người bị tạm giữ, tạm giam, phạm nhân</h3>
+                    <p>Căn cứ Luật Thi hành án hình sự và các văn bản pháp luật liên quan, thân nhân muốn thăm gặp người bị tạm giữ, tạm giam, phạm nhân cần chuẩn bị các giấy tờ sau:</p>
+                    <ul>
+                        <li>**Đơn xin thăm gặp:** Theo mẫu quy định, có xác nhận của cơ quan có thẩm quyền (chính quyền địa phương hoặc cơ quan công tác).</li>
+                        <li>**Giấy tờ tùy thân:** Chứng minh nhân dân/Căn cước công dân hoặc hộ chiếu (bản gốc để đối chiếu).</li>
+                        <li>**Giấy tờ chứng minh quan hệ nhân thân:** Sổ hộ khẩu, Giấy khai sinh, Giấy đăng ký kết hôn,... để chứng minh quan hệ với người bị tạm giữ, tạm giam, phạm nhân.</li>
+                        <li>**Lưu ý:**
+                            <ul>
+                                <li>Người thăm gặp phải tuân thủ các quy định về giờ giấc, trang phục và quy tắc ứng xử tại Trại Tạm giam.</li>
+                                <li>Việc thăm gặp sẽ được thực hiện dưới sự giám sát của cán bộ quản giáo.</li>
+                                <li>Các trường hợp đặc biệt (như luật sư, người bào chữa) sẽ có quy định riêng theo pháp luật tố tụng.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3>2. Thủ tục gửi quà, đồ dùng cá nhân</h3>
+                    <p>Thân nhân có thể gửi quà, đồ dùng cá nhân cho người bị tạm giữ, tạm giam, phạm nhân nhưng phải tuân thủ nghiêm ngặt các quy định của Trại để đảm bảo an ninh và an toàn vệ sinh.</p>
+                    <ul>
+                        <li>**Đơn xin gửi quà:** Theo mẫu, ghi rõ danh mục các loại quà, số lượng.</li>
+                        <li>**Danh mục hàng hóa được phép gửi:**
+                            <ul>
+                                <li>**Thực phẩm:** Phải là đồ khô, đã qua chế biến, còn hạn sử dụng rõ ràng, dễ bảo quản, không gây mất vệ sinh. Ví dụ: bánh kẹo đóng gói, sữa hộp, mì gói.</li>
+                                <li>**Đồ dùng cá nhân:** Bàn chải đánh răng, kem đánh răng, xà phòng, khăn mặt (không có vật sắc nhọn), quần áo (không có kim loại, dây rút, hình ảnh nhạy cảm).</li>
+                                <li>**Sách báo:** Phải được kiểm duyệt, không có nội dung cấm.</li>
+                            </ul>
+                        </li>
+                        <li>**Danh mục hàng hóa bị cấm gửi:**
+                            <ul>
+                                <li>Chất kích thích, chất gây nghiện, rượu bia, thuốc lá.</li>
+                                <li>Vật sắc nhọn, vật liệu nổ, vũ khí.</li>
+                                <li>Tiền mặt, trang sức, điện thoại di động, các thiết bị điện tử.</li>
+                                <li>Thực phẩm tươi sống, đã qua chế biến nhưng dễ ôi thiu.</li>
+                                <li>Các vật phẩm có thể dùng làm công cụ phạm tội hoặc ảnh hưởng đến an ninh Trại.</li>
+                            </ul>
+                        </li>
+                        <li>**Quy trình:**
+                            <ul>
+                                <li>Quà gửi phải được đóng gói cẩn thận, ghi rõ thông tin người gửi và người nhận.</li>
+                                <li>Cán bộ Trại sẽ tiến hành kiểm tra nghiêm ngặt toàn bộ quà và đồ dùng gửi vào. Mọi vật phẩm nghi vấn sẽ bị từ chối hoặc tạm giữ để xác minh.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <p><a href="#home-news" data-tab-id="home-news" class="back-to-news"><i class="fas fa-arrow-left"></i> Quay lại Tin tức hoạt động</a></p>
+            </div>
+        </section>
+
+        <section id="news-huan-luyen" class="tab-section hidden" data-tab-group="home-sub-tabs">
+            <h2>Trại Tạm giam tổ chức huấn luyện nghiệp vụ chuyên sâu cho cán bộ</h2>
+            <p class="news-meta-full"><i class="fas fa-calendar-alt"></i> 15/06/2025 | <i class="fas fa-user-tie"></i> Ban biên tập</p>
+            <img src="images/news-placeholder-1.jpg" alt="Ảnh minh họa khóa huấn luyện" class="news-detail-image">
+            <p>
+                Ngày 15 tháng 6 năm 2025, Trại Tạm giam Công an tỉnh Nghệ An đã tổ chức thành công khóa huấn luyện nghiệp vụ chuyên sâu cho toàn thể cán bộ, chiến sĩ trong đơn vị. Khóa học nhằm mục đích nâng cao năng lực chuyên môn, kỹ năng thực hành và cập nhật các kiến thức mới nhất về quản lý, giáo dục can phạm nhân theo quy định của pháp luật.
+            </p>
+            <p>
+                Trong thời gian diễn ra khóa huấn luyện, các cán bộ, chiến sĩ đã được truyền đạt những nội dung quan trọng về quy trình tạm giữ, tạm giam, công tác bảo vệ an ninh trật tự, xử lý các tình huống phức tạp có thể phát sinh trong quá trình công tác. Đặc biệt, khóa huấn luyện cũng tập trung vào các kỹ năng mềm như giao tiếp, xử lý tâm lý, và các biện pháp nhân đạo trong quá trình quản lý đối tượng.
+            </p>
+            <p>
+                Phát biểu tại buổi lễ bế giảng, đồng chí [Tên đồng chí Lãnh đạo Trại] đã biểu dương tinh thần học tập nghiêm túc và trách nhiệm của toàn thể cán bộ, chiến sĩ. Đồng chí nhấn mạnh, việc thường xuyên tổ chức các khóa huấn luyện nghiệp vụ là hết sức cần thiết, góp phần xây dựng lực lượng cán bộ, chiến sĩ Trại Tạm giam ngày càng chuyên nghiệp, vững vàng về chính trị, tinh thông về nghiệp vụ, đáp ứng tốt yêu cầu nhiệm vụ trong tình hình mới, đặc biệt trong việc đảm bảo quyền con người, quyền công dân của người bị tạm giữ, tạm giam theo Hiến pháp và pháp luật.
+            </p>
+            <p>
+                Khóa huấn luyện đã kết thúc tốt đẹp, trang bị thêm nhiều kiến thức và kỹ năng quý báu cho cán bộ, chiến sĩ, góp phần nâng cao hiệu quả công tác của Trại Tạm giam Công an tỉnh Nghệ An.
+            </p>
+            <p><a href="#home-news" data-tab-id="home-news" class="back-to-news"><i class="fas fa-arrow-left"></i> Quay lại trang Tin tức</a></p>
+        </section>
+
+        <section id="news-dich-benh" class="tab-section hidden" data-tab-group="home-sub-tabs">
+            <h2>Tăng cường công tác phòng, chống dịch bệnh trong Trại Tạm giam</h2>
+            <p class="news-meta-full"><i class="fas fa-calendar-alt"></i> 10/06/2025 | <i class="fas fa-user-tie"></i> Ban y tế</p>
+            <img src="images/news-placeholder-2.jpg" alt="Ảnh minh họa công tác y tế" class="news-detail-image">
+            <p>
+                Trước diễn biến phức tạp của các loại dịch bệnh, Trại Tạm giam Công an tỉnh Nghệ An đã chủ động triển khai đồng bộ nhiều biện pháp phòng, chống dịch bệnh nhằm đảm bảo an toàn tuyệt đối cho sức khỏe của can phạm nhân và cán bộ, chiến sĩ trong đơn vị.
+            </p>
+            <p>
+                Các biện pháp được thực hiện bao gồm: Tăng cường vệ sinh môi trường, phun khử khuẩn định kỳ các khu vực giam giữ, làm việc; Tổ chức khám sức khỏe định kỳ và kiểm tra y tế thường xuyên cho can phạm nhân; Cấp phát đầy đủ vật tư y tế, thuốc men cần thiết; Nâng cao nhận thức về phòng chống dịch bệnh cho toàn thể cán bộ và can phạm nhân.
+            </p>
+            <p>
+                Đội ngũ y tế của Trại luôn trong trạng thái sẵn sàng, phối hợp chặt chẽ với các cơ quan y tế địa phương để theo dõi sát sao tình hình dịch bệnh, kịp thời phát hiện và xử lý các trường hợp nghi ngờ hoặc mắc bệnh. Các quy trình cách ly, điều trị cũng được chuẩn bị kỹ lưỡng nhằm ngăn chặn sự lây lan trong môi trường giam giữ.
+            </p>
+            <p>
+                Nhờ sự chủ động và quyết liệt trong công tác phòng, chống dịch, Trại Tạm giam đã duy trì được môi trường an toàn, không để xảy ra các ca lây nhiễm trong đơn vị, góp phần đảm bảo ổn định an ninh trật tự và sức khỏe cộng đồng.
+            </p>
+            <p><a href="#home-news" data-tab-id="home-news" class="back-to-news"><i class="fas fa-arrow-left"></i> Quay lại trang Tin tức</a></p>
+        </section>
+
+        <section id="news-an-ninh" class="tab-section hidden" data-tab-group="home-sub-tabs">
+            <h2>Đảm bảo an ninh, trật tự tuyệt đối trong dịp Lễ lớn</h2>
+            <p class="news-meta-full"><i class="fas fa-calendar-alt"></i> 05/06/2025 | <i class="fas fa-user-tie"></i> Đội Cảnh sát bảo vệ</p>
+            <img src="images/news-placeholder-3.jpg" alt="Ảnh minh họa an ninh" class="news-detail-image">
+            <p>
+                Thực hiện chỉ đạo của Công an tỉnh Nghệ An về việc tăng cường công tác đảm bảo an ninh, trật tự trong các dịp lễ lớn, Trại Tạm giam đã xây dựng và triển khai kế hoạch chi tiết, huy động tối đa lực lượng, phương tiện để bảo vệ an toàn tuyệt đối cho cơ sở giam giữ.
+            </p>
+            <p>
+                Các biện pháp nghiệp vụ được siết chặt, công tác canh gác, tuần tra được tăng cường 24/24. Cán bộ, chiến sĩ luôn nêu cao tinh thần cảnh giác, chủ động phòng ngừa, phát hiện và đấu tranh với mọi âm mưu, hành vi vi phạm pháp luật. Công tác kiểm soát ra vào, kiểm tra an ninh được thực hiện nghiêm ngặt, không để sơ hở, thiếu sót.
+            </p>
+            <p>
+                Bên cạnh đó, Trại cũng tăng cường phối hợp với các lực lượng chức năng khác trên địa bàn để đảm bảo an toàn từ bên ngoài, tạo thành "vành đai" bảo vệ vững chắc cho Trại Tạm giam.
+            </p>
+            <p>
+                Nhờ sự chuẩn bị chu đáo và triển khai quyết liệt, Trại Tạm giam Công an tỉnh Nghệ An đã hoàn thành xuất sắc nhiệm vụ bảo đảm an ninh, trật tự trong suốt dịp lễ, không để xảy ra bất kỳ sự cố nào, góp phần vào thành công chung của công tác bảo đảm an ninh quốc gia, trật tự an toàn xã hội trên địa bàn tỉnh.
+            </p>
+            <p><a href="#home-news" data-tab-id="home-news" class="back-to-news"><i class="fas fa-arrow-left"></i> Quay lại trang Tin tức</a></p>
+        </section>
+
+        <section id="about" class="tab-section hidden">
+            <h2>Giới thiệu chung</h2>
+            <p>Trại Tạm giam thuộc Công an tỉnh Nghệ An là một đơn vị quan trọng, có chức năng chính là **tạm giữ, tạm giam và quản lý can phạm nhân** theo đúng quy định của pháp luật Việt Nam. Chúng tôi cam kết thực hiện công tác quản lý một cách nhân đạo, đúng đắn, đảm bảo quyền và lợi ích hợp pháp của người bị tạm giữ, tạm giam.</p>
+            <p>Với đội ngũ cán bộ, chiến sĩ chuyên nghiệp, tận tâm, chúng tôi luôn đặt mục tiêu cao nhất là duy trì an toàn tuyệt đối cho cơ sở giam giữ, đồng thời góp phần vào công tác điều tra, xét xử, và thi hành án, đảm bảo công lý được thực thi.</p>
+
+            <h3 class="sub-heading">Chức năng - Nhiệm vụ của Trại Tạm giam</h3>
+            <div class="content-list">
+                <ul>
+                    <li>**Tiếp nhận, tạm giữ, tạm giam:** Thực hiện việc tiếp nhận, đăng ký, phân loại và quản lý người bị tạm giữ, tạm giam theo lệnh của cơ quan có thẩm quyền.</li>
+                    <li>**Quản lý can phạm nhân:** Đảm bảo việc quản lý chặt chẽ, an toàn đối với can phạm nhân, không để xảy ra các tình huống mất an ninh, trật tự trong trại, như trốn, gây rối, tự sát, hoặc phạm tội mới.</li>
+                    <li>**Thực hiện chế độ, chính sách:** Đảm bảo các chế độ về ăn, ở, mặc, sinh hoạt, y tế, thăm gặp, gửi nhận thư, tiền, quà... của người bị tạm giữ, tạm giam và phạm nhân theo đúng quy định của Luật Thi hành án hình sự và các văn bản hướng dẫn thi hành.</li>
+                    <li>**Giáo dục, cải tạo:** Phối hợp với các cơ quan tiến hành tố tụng trong công tác giáo dục pháp luật, đạo đức, và vận động can phạm nhân chấp hành tốt các quy định của pháp luật, phục hồi nhân phẩm.</li>
+                    <li>**Phối hợp công tác:** Hỗ trợ các cơ quan điều tra, kiểm sát, tòa án trong quá trình điều tra, truy tố, xét xử, và thi hành án, đảm bảo đúng người, đúng tội, đúng pháp luật.</li>
+                    <li>**Thống kê, báo cáo:** Thực hiện công tác thống kê, lưu trữ hồ sơ, tài liệu liên quan đến người bị tạm giữ, tạm giam và phạm nhân theo quy định.</li>
+                    <li>**Bảo vệ quyền và lợi ích hợp pháp:** Đảm bảo quyền con người, quyền công dân của người bị tạm giữ, tạm giam theo Hiến pháp và pháp luật.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="mission" class="tab-section hidden">
+            <h2>Chức năng - Nhiệm vụ (Chi tiết)</h2>
+            <p>Đây là nội dung chi tiết hơn về chức năng nhiệm vụ. Nếu bạn muốn tách biệt, hãy giữ lại. Nếu không, có thể xóa section này.</p>
+            <div class="content-list">
+                <h3>Các nhiệm vụ chính:</h3>
+                <ul>
+                    <li>**Giam giữ an toàn:** Đảm bảo an toàn tuyệt đối cho người bị tạm giữ, tạm giam và phạm nhân, không để xảy ra các tình huống mất an ninh, trật tự trong trại.</li>
+                    <li>**Thực hiện chế độ chính sách:** Đảm bảo các chế độ ăn, ở, sinh hoạt, y tế, thăm gặp theo đúng quy định của pháp luật và của ngành.</li>
+                    <li>**Giáo dục, cải tạo:** Phối hợp với các cơ quan liên quan trong công tác giáo dục pháp luật, đạo đức, và lao động để can phạm nhân và phạm nhân có cơ hội phục hồi nhân phẩm, sớm tái hòa nhập cộng đồng.</li>
+                    <li>**Phối hợp công tác:** Hỗ trợ các cơ quan điều tra, kiểm sát, tòa án trong quá trình giải quyết vụ án, đảm bảo đúng người, đúng tội, đúng pháp luật.</li>
+                    <li>**Quản lý hồ sơ:** Thực hiện quản lý chặt chẽ hồ sơ, tài liệu liên quan đến người bị tạm giữ, tạm giam và phạm nhân.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="history" class="tab-section hidden">
+            <h2>Lịch sử Trại</h2>
+            <p>Trại Tạm Giam Công an Tỉnh Nghệ An được thành lập vào ngày **[Điền ngày, tháng, năm thành lập]**, trong bối cảnh [nêu tóm tắt bối cảnh lịch sử, ví dụ: "đất nước đang trong giai đoạn đổi mới, yêu cầu về củng cố an ninh trật tự được đặt lên hàng đầu"].</p>
+            <p>Trong suốt quá trình hình thành và phát triển, trại đã không ngừng lớn mạnh, vượt qua nhiều khó khăn, thử thách để hoàn thành xuất sắc nhiệm vụ chính trị được giao. Từ những ngày đầu cơ sở vật chất còn hạn chế, đến nay trại đã được đầu tư, nâng cấp hiện đại, đáp ứng tốt yêu cầu công tác trong tình hình mới.</p>
+            <p>Nhiều thế hệ cán bộ, chiến sĩ đã cống hiến thầm lặng, xây dựng nên truyền thống vẻ vang, giữ vững danh hiệu là một trong những đơn vị nòng cốt của Công an Tỉnh Nghệ An trong công tác thi hành án hình sự và hỗ trợ tư pháp.</p>
+            <div class="history-gallery">
+            </div>
+        </section>
+
+        <section id="past-leaders" class="tab-section hidden">
+            <h2>Lãnh đạo qua các thời kỳ</h2>
+            <div class="leader-list">
+                <div class="leader-card">
+                    <img src="images/avatar-placeholder.png" alt="Ảnh đồng chí [Tên Lãnh đạo 1]" class="leader-photo">
+                    <h3 class="leader-name">[Họ và tên Lãnh đạo 1]</h3>
+                    <p class="leader-position">Chức vụ: [Chức vụ]</p>
+                    <p class="leader-tenure">Thời gian: [Từ năm] - [Đến năm]</p>
+                </div>
+                <div class="leader-card">
+                    <img src="images/avatar-placeholder.png" alt="Ảnh đồng chí [Tên Lãnh đạo 2]" class="leader-photo">
+                    <h3 class="leader-name">[Họ và tên Lãnh đạo 2]</h3>
+                    <p class="leader-position">Chức vụ: [Chức vụ]</p>
+                    <p class="leader-tenure">Thời gian: [Từ năm] - [Đến năm]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="current-leaders" class="tab-section hidden">
+            <h2>Lãnh đạo hiện nay</h2>
+            <div class="leader-list current-leaders">
+                <div class="leader-card">
+                    <img src="images/avatar-placeholder.png" alt="Ảnh đồng chí [Tên Lãnh đạo hiện tại]" class="leader-photo">
+                    <h3 class="leader-name">[Họ và tên Lãnh đạo hiện tại]</h3>
+                    <p class="leader-position">Chức vụ: [Chức vụ hiện tại]</p>
+                    <p class="leader-phone">Điện thoại: [Số điện thoại]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tham-muu-hau-can" class="tab-section hidden">
+            <h2>Đội Tham mưu - Hậu cần</h2>
+            <p><strong>Chức năng, nhiệm vụ:</strong> Đảm bảo công tác tham mưu tổng hợp, văn thư lưu trữ, quản lý tài chính, tài sản, hậu cần, kỹ thuật, y tế và các điều kiện vật chất phục vụ hoạt động của Trại Tạm giam.</p>
+            <div class="unit-commander-info">
+                <img src="images/avatar-placeholder.png" alt="Ảnh Chỉ huy Đội Tham mưu - Hậu cần" class="commander-photo-lg">
+                <div class="commander-details">
+                    <p><strong>Chỉ huy đội:</strong> [Họ và tên Chỉ huy Đội Tham mưu - Hậu cần]</p>
+                    <p><strong>Chức vụ:</strong> [Chức vụ]</p>
+                    <p><strong>Điện thoại:</strong> [Số điện thoại]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quan-giao" class="tab-section hidden">
+            <h2>Đội Quản giáo</h2>
+            <p><strong>Chức năng, nhiệm vụ:</strong> Thực hiện công tác quản lý, giáo dục, giám sát, đảm bảo an toàn cho người bị tạm giữ, tạm giam và phạm nhân. Tổ chức các hoạt động lao động, học tập, sinh hoạt văn hóa, thể thao cho can phạm nhân theo quy định.</p>
+            <div class="unit-commander-info">
+                <img src="images/avatar-placeholder.png" alt="Ảnh Chỉ huy Đội Quản giáo" class="commander-photo-lg">
+                <div class="commander-details">
+                    <p><strong>Chỉ huy đội:</strong> [Họ và tên Chỉ huy Đội Quản giáo]</p>
+                    <p><strong>Chức vụ:</strong> [Chức vụ]</p>
+                    <p><strong>Điện thoại:</strong> [Số điện thoại]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="canh-sat-bao-ve" class="tab-section hidden">
+            <h2>Đội Cảnh sát bảo vệ</h2>
+            <p><strong>Chức năng, nhiệm vụ:</strong> Đảm bảo công tác vũ trang canh gác, bảo vệ an ninh, trật tự và an toàn tuyệt đối cho Trại Tạm giam. Thực hiện nhiệm vụ áp giải, dẫn giải can phạm nhân theo lệnh của cơ quan có thẩm quyền.</p>
+            <div class="unit-commander-info">
+                <img src="images/avatar-placeholder.png" alt="Ảnh Chỉ huy Đội Cảnh sát bảo vệ" class="commander-photo-lg">
+                <div class="commander-details">
+                    <p><strong>Chỉ huy đội:</strong> [Họ và tên Chỉ huy Đội Cảnh sát bảo vệ]</p>
+                    <p><strong>Chức vụ:</strong> [Chức vụ]</p>
+                    <p><strong>Điện thoại:</strong> [Số điện thoại]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="phan-trai-quan-ly-pham-nhan" class="tab-section hidden">
+            <h2>Phân trại Quản lý phạm nhân</h2>
+            <p><strong>Chức năng, nhiệm vụ:</strong> Quản lý, giáo dục và cải tạo phạm nhân đã có bản án có hiệu lực pháp luật. Tổ chức lao động, học tập, sinh hoạt, chăm sóc sức khỏe và đảm bảo các quyền lợi khác của phạm nhân theo quy định pháp luật.</p>
+            <div class="unit-commander-info">
+                <img src="images/avatar-placeholder.png" alt="Ảnh Chỉ huy Phân trại Quản lý phạm nhân" class="commander-photo-lg">
+                <div class="commander-details">
+                    <p><strong>Chỉ huy đội:</strong> [Họ và tên Chỉ huy Phân trại Quản lý phạm nhân]</p>
+                    <p><strong>Chức vụ:</strong> [Chức vụ]</p>
+                    <p><strong>Điện thoại:</strong> [Số điện thoại]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="phan-trai-tam-giam-vinh" class="tab-section hidden">
+            <h2>Phân trại tạm giam Vinh</h2>
+            <p><strong>Chức năng, nhiệm vụ:</strong> Thực hiện công tác tạm giữ, tạm giam đối với các đối tượng trong quá trình điều tra, truy tố, xét xử tại địa bàn thành phố Vinh và các khu vực lân cận theo sự phân công của Công an tỉnh.</p>
+            <div class="unit-commander-info">
+                <img src="images/avatar-placeholder.png" alt="Ảnh Chỉ huy Phân trại tạm giam Vinh" class="commander-photo-lg">
+                <div class="commander-details">
+                    <p><strong>Chỉ huy đội:</strong> [Họ và tên Chỉ huy Phân trại tạm giam Vinh]</p>
+                    <p><strong>Chức vụ:</strong> [Chức vụ]</p>
+                    <p><strong>Điện thoại:</strong> [Số điện thoại]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="phan-trai-tam-giam-do-luong" class="tab-section hidden">
+            <h2>Phân trại tạm giam Đô Lương</h2>
+            <p><strong>Chức năng, nhiệm vụ:</strong> Thực hiện công tác tạm giữ, tạm giam đối với các đối tượng trong quá trình điều tra, truy tố, xét xử tại khu vực huyện Đô Lương và các huyện phía Tây Nghệ An theo sự phân công của Công an tỉnh.</p>
+            <div class="unit-commander-info">
+                <img src="images/avatar-placeholder.png" alt="Ảnh Chỉ huy Phân trại tạm giam Đô Lương" class="commander-photo-lg">
+                <div class="commander-details">
+                    <p><strong>Chỉ huy đội:</strong> [Họ và tên Chỉ huy Phân trại tạm giam Đô Lương]</p>
+                    <p><strong>Chức vụ:</strong> [Chức vụ]</p>
+                    <p><strong>Điện thoại:</strong> [Số điện thoại]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="phan-trai-tam-giam-thai-hoa" class="tab-section hidden">
+            <h2>Phân trại tạm giam Thái Hòa</h2>
+            <p><strong>Chức năng, nhiệm vụ:</strong> Thực hiện công tác tạm giữ, tạm giam đối với các đối tượng trong quá trình điều tra, truy tố, xét xử tại khu vực thị xã Thái Hòa và các huyện phía Bắc Nghệ An theo sự phân công của Công an tỉnh.</p>
+            <div class="unit-commander-info">
+                <img src="images/avatar-placeholder.png" alt="Ảnh Chỉ huy Phân trại tạm giam Thái Hòa" class="commander-photo-lg">
+                <div class="commander-details">
+                    <p><strong>Chỉ huy đội:</strong> [Họ và tên Chỉ huy Phân trại tạm giam Thái Hòa]</p>
+                    <p><strong>Chức vụ:</strong> [Chức vụ]</p>
+                    <p><strong>Điện thoại:</strong> [Số điện thoại]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="phan-trai-tam-giam-tuong-duong" class="tab-section hidden">
+            <h2>Phân trại tạm giam Tương Dương</h2>
+            <p><strong>Chức năng, nhiệm vụ:</strong> Thực hiện công tác tạm giữ, tạm giam đối với các đối tượng trong quá trình điều tra, truy tố, xét xử tại khu vực huyện Tương Dương và các huyện vùng biên giới phía Tây Nghệ An theo sự phân công của Công an tỉnh.</p>
+            <div class="unit-commander-info">
+                <img src="images/avatar-placeholder.png" alt="Ảnh Chỉ huy Phân trại tạm giam Tương Dương" class="commander-photo-lg">
+                <div class="commander-details">
+                    <p><strong>Chỉ huy đội:</strong> [Họ và tên Chỉ huy Phân trại tạm giam Tương Dương]</p>
+                    <p><strong>Chức vụ:</strong> [Chức vụ]</p>
+                    <p><strong>Điện thoại:</strong> [Số điện thoại]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="tab-section hidden">
+            <h2>Liên hệ</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt contact-icon"></i> **Địa chỉ:** [Điền địa chỉ cụ thể của Trại Tạm giam]</p>
+                <p><i class="fas fa-phone-alt contact-icon"></i> **Điện thoại:** [Điền số điện thoại liên hệ]</p>
+                </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Trại Tạm giam Công an Tỉnh Nghệ An.</p>
+            <p>Phát triển bởi Trung tá Bùi Quang Vinh - Phó Trưởng phân trại quản lý phạm nhân.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
