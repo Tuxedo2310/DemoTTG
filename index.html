@@ -4,27 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trại Tạm Giam - Công an Tỉnh Nghệ An</title> 
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="main-header">
-        <div class="header-content container">
-            <div class="logo-area">
+    <div class="header-content container">
+        <div class="header-left"> <div class="logo-area">
                 <a href="#home" class="logo-link">
                     <img src="images/logo-cand.png" alt="Logo Công an nhân dân" class="logo">
                     <div class="site-title">
+                        <h1>TRẠI TẠM GIAM</h1>
                         <h1>CÔNG AN TỈNH NGHỆ AN</h1>
-                        <h2>TRẠI TẠM GIAM</h2>
                     </div>
                 </a>
             </div>
-            <div class="current-datetime" id="current-datetime">
+        </div>
+
+        <div class="header-right"> <div class="header-info-top">
+                <div class="current-datetime" id="current-datetime">
+                    </div>
             </div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Tìm kiếm...">
+                <button type="submit" aria-label="Tìm kiếm"><i class="fas fa-search"></i></button>
+            </div>
+
             <button class="menu-toggle" id="menu-toggle-btn" aria-label="Mở/đóng menu">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
+    </div>
     </header>
 
     <nav class="navbar" id="main-nav">
@@ -72,6 +89,16 @@
                     <li><a href="#phan-trai-tam-giam-tuong-duong" class="submenu-link" data-tab-id="phan-trai-tam-giam-tuong-duong">Phân trại tạm giam Tương Dương</a></li>
                 </ul>
             </li>
+            <li class="nav-item has-submenu">
+                <a href="#" class="nav-link parent-link" data-tab-parent="units">
+                    <i class="fas fa-user-tie"></i> Hướng dẫn thăm gặp <i class="fas fa-chevron-down submenu-icon"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#huong-dan-tham-gap" class="submenu-link" data-tab-id="huong-dan-tham-gap">Hướng dẫn thủ tục thăm gặp</a></li>
+                    <li><a href="#dang-ky-gap-truc-tuyen" class="submenu-link" data-tab-id="dang-ky-gap-truc-tuyen">Đăng ký thăm gặp</a></li>
+                </ul>
+            </li>
+            
             <li class="nav-item">
                 <a href="#contact" class="nav-link" data-tab-id="contact">
                     <i class="fas fa-phone-alt nav-icon"></i> Liên hệ
@@ -80,13 +107,25 @@
         </ul>
     </nav>
 
-    <main class="main-content container">
-        <section id="home" class="tab-section active"> <div class="sub-tab-navigation">
+   <main class="main-content container">
+    <div class="content-main"> <section id="home" class="tab-section active">
+            <div class="sub-tab-navigation">
                 <a href="#home-news" class="sub-tab-link active" data-tab-id="home-news" data-tab-group="home-sub-tabs">Tin tức hoạt động</a>
                 <a href="#huong-dan-tham-gap" class="sub-tab-link" data-tab-id="huong-dan-tham-gap" data-tab-group="home-sub-tabs">Hướng dẫn các thủ tục thăm gặp, gửi quà</a>
             </div>
 
-            <div id="home-news" class="sub-tab-content active" data-tab-group="home-sub-tabs"> <div class="news-list">
+            <div id="home-news" class="sub-tab-content active" data-tab-group="home-sub-tabs">
+                <h2>Tin tức hoạt động mới nhất</h2>
+                <div class="news-list">
+                    <article class="news-card">
+                        <img src="images/news-placeholder-4.jpg" alt="Hoạt động học nghề" class="news-image">
+                        <div class="news-content">
+                            <h3 class="news-title"><a href="#news-hoc-nghe" data-tab-id="news-hoc-nghe">Trại Tạm giam tổ chức dạy nghề cho phạm nhân</a></h3>
+                            <p class="news-meta"><i class="fas fa-calendar-alt"></i> 25/06/2025 | <i class="fas fa-user-tie"></i> Ban biên tập</p>
+                            <p class="news-summary">🌱 Ai cũng có thể lầm lỡ, nhưng ai cũng xứng đáng có cơ hội làm lại từ đầu…</p>
+                            <a href="#news-hoc-nghe" data-tab-id="news-hoc-nghe" class="read-more">Đọc thêm <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
                     <article class="news-card">
                         <img src="images/news-placeholder-1.jpg" alt="Hoạt động huấn luyện nghiệp vụ" class="news-image">
                         <div class="news-content">
@@ -169,6 +208,27 @@
             </div>
         </section>
 
+        <section id="news-hoc-nghe" class="tab-section hidden" data-tab-group="home-sub-tabs">
+            <h2>Trại Tạm giam tổ chức dạy nghề cho phạm nhân</h2>
+            <p class="news-meta-full"><i class="fas fa-calendar-alt"></i> 25/06/2025 | <i class="fas fa-user-tie"></i> Ban biên tập</p>
+            <img src="images/news-placeholder-4.jpg" alt="Ảnh minh họa học nghề" class="news-detail-image">
+            <p>
+                🌱 Ai cũng có thể lầm lỡ, nhưng ai cũng xứng đáng có cơ hội làm lại từ đầu…
+            </p>
+            <p>
+                Với tinh thần nhân văn và trách nhiệm, Trại tạm giam Công an tỉnh Nghệ An vừa phối hợp với Trường Đại học Sư phạm kỹ thuật 3 tổ chức lớp đào tạo nghề điện dân dụng cho 25 phạm nhân đang chấp hành án tại trại.
+                💡 Trong lớp học ấy, không còn khoảng cách của quá khứ, chỉ còn những ánh mắt chăm chú, những bàn tay ghi chép cẩn thận, những giấc mơ nhỏ nhen nhóm trở lại từ những mạch điện đơn sơ.
+            </p>
+            <p>
+                🎓 Đây không đơn thuần là dạy một cái nghề, mà là trao gửi niềm tin – tin vào sự thay đổi, tin vào một con đường khác sau cánh cổng trại giam. Những kỹ năng thực tế sẽ là hành trang quý giá để họ có thể tự nuôi sống bản thân, sống lương thiện và có ích sau khi mãn hạn tù.
+            </p>
+            <p>
+                ❤️ Mỗi bài học là một bước tiến – từ bóng tối ra ánh sáng. Đây chính là minh chứng cho phương châm: “Cải tạo tốt để tái hòa nhập bền vững” mà Trại Tạm giam Công an Nghệ An luôn nỗ lực thực hiện.
+                👉 Cánh cửa cuộc đời không bao giờ khép lại với người thật sự muốn bước ra ánh sáng.
+            </p>
+            <p><a href="#home-news" data-tab-id="home-news" class="back-to-news"><i class="fas fa-arrow-left"></i> Quay lại trang Tin tức</a></p>
+        </section>
+
         <section id="news-huan-luyen" class="tab-section hidden" data-tab-group="home-sub-tabs">
             <h2>Trại Tạm giam tổ chức huấn luyện nghiệp vụ chuyên sâu cho cán bộ</h2>
             <p class="news-meta-full"><i class="fas fa-calendar-alt"></i> 15/06/2025 | <i class="fas fa-user-tie"></i> Ban biên tập</p>
@@ -227,7 +287,7 @@
         </section>
 
         <section id="about" class="tab-section hidden">
-            <h2>Giới thiệu chung</h2>
+            <h2>Giới thiệu chung về Trại Tạm Giam Công an Tỉnh Nghệ An</h2>
             <p>Trại Tạm giam thuộc Công an tỉnh Nghệ An là một đơn vị quan trọng, có chức năng chính là **tạm giữ, tạm giam và quản lý can phạm nhân** theo đúng quy định của pháp luật Việt Nam. Chúng tôi cam kết thực hiện công tác quản lý một cách nhân đạo, đúng đắn, đảm bảo quyền và lợi ích hợp pháp của người bị tạm giữ, tạm giam.</p>
             <p>Với đội ngũ cán bộ, chiến sĩ chuyên nghiệp, tận tâm, chúng tôi luôn đặt mục tiêu cao nhất là duy trì an toàn tuyệt đối cho cơ sở giam giữ, đồng thời góp phần vào công tác điều tra, xét xử, và thi hành án, đảm bảo công lý được thực thi.</p>
 
@@ -266,7 +326,7 @@
             <p>Trong suốt quá trình hình thành và phát triển, trại đã không ngừng lớn mạnh, vượt qua nhiều khó khăn, thử thách để hoàn thành xuất sắc nhiệm vụ chính trị được giao. Từ những ngày đầu cơ sở vật chất còn hạn chế, đến nay trại đã được đầu tư, nâng cấp hiện đại, đáp ứng tốt yêu cầu công tác trong tình hình mới.</p>
             <p>Nhiều thế hệ cán bộ, chiến sĩ đã cống hiến thầm lặng, xây dựng nên truyền thống vẻ vang, giữ vững danh hiệu là một trong những đơn vị nòng cốt của Công an Tỉnh Nghệ An trong công tác thi hành án hình sự và hỗ trợ tư pháp.</p>
             <div class="history-gallery">
-            </div>
+                </div>
         </section>
 
         <section id="past-leaders" class="tab-section hidden">
@@ -303,11 +363,12 @@
             <h2>Đội Tham mưu - Hậu cần</h2>
             <p><strong>Chức năng, nhiệm vụ:</strong> Đảm bảo công tác tham mưu tổng hợp, văn thư lưu trữ, quản lý tài chính, tài sản, hậu cần, kỹ thuật, y tế và các điều kiện vật chất phục vụ hoạt động của Trại Tạm giam.</p>
             <div class="unit-commander-info">
-                <img src="images/avatar-placeholder.png" alt="Ảnh Chỉ huy Đội Tham mưu - Hậu cần" class="commander-photo-lg">
+                <img src="images/myhanh.png" alt="Ảnh Chỉ huy Đội Tham mưu - Hậu cần" class="commander-photo-lg">
                 <div class="commander-details">
-                    <p><strong>Chỉ huy đội:</strong> [Họ và tên Chỉ huy Đội Tham mưu - Hậu cần]</p>
-                    <p><strong>Chức vụ:</strong> [Chức vụ]</p>
-                    <p><strong>Điện thoại:</strong> [Số điện thoại]</p>
+                    <p><strong>Chỉ huy đội:</strong> Trần Thị Mỹ Hạnh</p>
+                    <p><strong>Cấp bậc:</strong> Trung tá</p>
+                    <p><strong>Chức vụ:</strong> Đội trưởng</p>
+                    <p><strong>Điện thoại:</strong> 098.973.6689</p>
                 </div>
             </div>
         </section>
@@ -347,6 +408,15 @@
                     <p><strong>Chỉ huy đội:</strong> [Họ và tên Chỉ huy Phân trại Quản lý phạm nhân]</p>
                     <p><strong>Chức vụ:</strong> [Chức vụ]</p>
                     <p><strong>Điện thoại:</strong> [Số điện thoại]</p>
+                </div>
+            </div>
+            <div class="unit-commander-info">
+                <img src="images/quangvinh.png" alt="Ảnh Chỉ huy Phân trại Quản lý phạm nhân" class="commander-photo-lg">
+                <div class="commander-details">
+                    <p><strong>Chỉ huy đội:</strong> Bùi Quang Vinh</p>
+                    <p><strong>Cấp bậc:</strong> Trung tá</p>
+                    <p><strong>Chức vụ:</strong> Phó Trưởng phân trại</p>
+                    <p><strong>Điện thoại:</strong> 090.345.0168</p>
                 </div>
             </div>
         </section>
@@ -410,6 +480,42 @@
                 <p><i class="fas fa-phone-alt contact-icon"></i> **Điện thoại:** [Điền số điện thoại liên hệ]</p>
                 </div>
         </section>
+
+    </div> <aside class="sidebar">
+        <div class="sidebar-block">
+            <h3><i class="fas fa-link"></i> Liên kết nhanh</h3>
+            <ul>
+                <li><a href="#huong-dan-tham-gap" class="sidebar-link" data-tab-id="huong-dan-tham-gap">Hướng dẫn thăm gặp</a></li>
+                <li><a href="#dang-ky-gap-truc-tuyen" class="sidebar-link" data-tab-id="dang-ky-gap-truc-tuyen">Đăng ký thăm gặp trực tuyến</a></li>
+                <li><a href="#quy-dinh-trai" class="sidebar-link" data-tab-id="quy-dinh-trai">Quy định của Trại</a></li>
+                <li><a href="#bieu-mau" class="sidebar-link" data-tab-id="bieu-mau">Biểu mẫu cần thiết</a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-block">
+            <h3><i class="fas fa-bullhorn"></i> Thông báo mới</h3>
+            <ul class="announcement-list">
+                <li><a href="#news-thong-bao-lich-tiep" class="sidebar-link" data-tab-id="news-thong-bao-lich-tiep">Thông báo lịch tiếp công dân ngày 25/07/2025</a></li>
+                <li><a href="#news-lich-lam-viec" class="sidebar-link" data-tab-id="news-lich-lam-viec">Lịch làm việc của lãnh đạo tuần 30</a></li>
+                <li><a href="#news-quy-dinh-moi" class="sidebar-link" data-tab-id="news-quy-dinh-moi">Quy định mới về thăm gặp và gửi quà cho phạm nhân</a></li>
+                </ul>
+            <a href="#home-news" class="view-all-announcements" data-tab-id="home-news">Xem tất cả <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="sidebar-block contact-info-sidebar">
+            <h3><i class="fas fa-phone-alt"></i> Liên hệ</h3>
+            <p><strong>Hotline:</strong> 0238.3xxxxxx</p>
+            <p><strong>Địa chỉ:</strong> Km 5, Đại lộ Xô Viết Nghệ Tĩnh, Xã Nghi Kim, TP. Vinh, Nghệ An</p>
+            <p><a href="#contact" class="sidebar-link" data-tab-id="contact">Xem bản đồ</a></p>
+        </div>
+
+        <div class="sidebar-block service-highlight">
+            <h3><i class="fas fa-user-secret"></i> Tiếp công dân</h3>
+            <p>Thông tin về lịch tiếp công dân và quy trình giải quyết khiếu nại, tố cáo.</p>
+            <a href="#tiep-cong-dan" class="btn btn-secondary" data-tab-id="tiep-cong-dan">Chi tiết <i class="fas fa-chevron-right"></i></a>
+        </div>
+        
+    </aside>
     </main>
 
     <footer class="main-footer">
