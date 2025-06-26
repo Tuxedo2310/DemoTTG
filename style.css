@@ -1,5 +1,5 @@
 /* Google Fonts - Noto Sans Vietnamese for body, Poppins for headings */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Vietnamese:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap'); /* Thêm weight 900 cho Poppins */
 
 /* --- CSS Variables --- */
 :root {
@@ -16,8 +16,8 @@
     --shadow-medium: rgba(0, 0, 0, 0.15);
 
     /* Typography */
-    --font-heading: 'Poppins', sans-serif;
-    --font-body: 'Noto Sans Vietnamese', sans-serif;
+--font-heading: 'Roboto', sans-serif; /* Chuyển Poppins thành Roboto */
+--font-body: 'Roboto', sans-serif;    /* Chuyển Noto Sans Vietnamese thành Roboto */
     --font-size-base: 16px;
 
     /* Spacing & Sizing */
@@ -930,4 +930,456 @@ ul {
     font-size: 1.3em;
     border-bottom: 1px dashed var(--border-light);
     padding-bottom: 5px;
+}
+/* --- Header --- */
+.main-header {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 15px 0; /* Có thể điều chỉnh padding nếu cần */
+    border-bottom: 5px solid var(--secondary-color);
+    box-shadow: 0 4px 10px var(--shadow-medium);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between; /* Đẩy header-left và header-right ra 2 bên */
+    align-items: center;
+    flex-wrap: wrap; /* Cho phép các mục xuống dòng trên màn hình nhỏ */
+    gap: var(--spacing-medium); /* Khoảng cách giữa các nhóm */
+}
+
+/* Header Left - Logo & Site Title */
+.header-left {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Cho phép nó mở rộng */
+    min-width: 0; /* Quan trọng để tiêu đề không tràn */
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-medium);
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small); /* Khoảng cách giữa logo và site-title */
+    color: inherit;
+    text-decoration: none;
+}
+
+.logo {
+    height: 80px; /* Điều chỉnh logo size */
+    width: auto;
+    object-fit: contain;
+}
+
+.site-title {
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+.site-title h1 {
+    margin: 0;
+    font-family: var(--font-heading); /* Bây giờ sẽ là Roboto */
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--text-light);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    white-space: nowrap; /* Giữ trên một dòng */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.site-title h2 {
+    margin: 5px 0 0 0;
+    font-family: var(--font-heading); /* Bây giờ sẽ là Roboto */
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--secondary-color);
+    white-space: nowrap; /* Giữ trên một dòng */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Header Right - Info, Search, Toggle */
+.header-right {
+    display: flex;
+    flex-direction: column; /* Xếp dọc các mục trong header-right trên desktop */
+    align-items: flex-end; /* Căn phải các mục */
+    gap: var(--spacing-small);
+}
+
+.header-info-top {
+    /* Điều chỉnh nếu bạn muốn ngày giờ nằm ở một vị trí cụ thể khác */
+    width: 100%; /* Đảm bảo nó chiếm đủ không gian để căn phải */
+    text-align: right;
+}
+
+/* Current Date/Time Display */
+.current-datetime {
+    color: var(--secondary-color);
+    font-family: var(--font-body); /* Bây giờ sẽ là Roboto */
+    font-size: 0.9em;
+    font-weight: 500;
+    white-space: nowrap;
+    background-color: transparent; /* Bỏ nền nếu không cần */
+    padding: 0; /* Bỏ padding nếu không cần */
+    border-radius: 0; /* Bỏ border-radius nếu không cần */
+    z-index: auto;
+}
+
+/* Header Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-base);
+    overflow: hidden;
+    max-width: 250px; /* Chiều rộng mặc định trên desktop */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.search-bar input {
+    border: none;
+    padding: var(--spacing-small);
+    font-size: 0.9em;
+    outline: none;
+    flex-grow: 1;
+    color: var(--text-dark);
+}
+
+.search-bar button {
+    background-color: var(--secondary-color);
+    border: none;
+    padding: var(--spacing-small) var(--spacing-medium);
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: background-color var(--transition-speed-normal) ease;
+    display: flex; /* Để căn giữa icon */
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar button:hover {
+    background-color: #e6b800;
+}
+
+/* Mobile Menu Toggle Button */
+.menu-toggle {
+    display: none; /* Mặc định ẩn trên desktop */
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: var(--border-radius-base);
+    transition: background-color var(--transition-speed-normal) ease;
+}
+
+.menu-toggle:hover {
+    background-color: #e6b800;
+}
+
+/* Responsive Adjustments for Header */
+@media (max-width: 992px) { /* Cho tablet trở xuống */
+    .header-content {
+        flex-direction: column; /* Xếp dọc các mục chính */
+        align-items: center; /* Căn giữa */
+        text-align: center;
+    }
+
+    .header-left, .header-right {
+        width: 100%; /* Chiếm toàn bộ chiều rộng */
+        flex-direction: column;
+        align-items: center; /* Căn giữa nội dung bên trong */
+        gap: var(--spacing-small);
+    }
+
+    .site-title h1, .site-title h2 {
+        white-space: normal; /* Cho phép tiêu đề xuống dòng */
+        overflow: visible;
+        text-overflow: clip;
+        font-size: 1.8em; /* Điều chỉnh kích thước trên mobile */
+    }
+    .site-title h2 {
+        font-size: 1.2em;
+    }
+
+    .current-datetime {
+        width: 100%;
+        text-align: center;
+        margin-bottom: var(--spacing-small); /* Khoảng cách dưới đồng hồ */
+    }
+
+    .search-bar {
+        width: 100%; /* Chiếm toàn bộ chiều rộng */
+        max-width: 400px; /* Giới hạn chiều rộng trên tablet */
+        margin-bottom: var(--spacing-medium);
+    }
+
+    .menu-toggle {
+        display: block; /* Hiển thị nút toggle trên mobile */
+        margin-top: var(--spacing-medium); /* Đẩy nút toggle xuống dưới cùng */
+    }
+}
+
+@media (max-width: 768px) { /* Cho điện thoại */
+    .logo {
+        height: 60px; /* Nhỏ hơn nữa trên điện thoại */
+    }
+    .site-title h1 {
+        font-size: 1.4em;
+    }
+    .site-title h2 {
+        font-size: 1em;
+    }
+}
+/* --- Base Styles (Đảm bảo flexbox/grid hoạt động tốt) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body); /* Đã được đặt là Roboto */
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ... các quy tắc a, img, ul khác giữ nguyên ... */
+
+
+/* --- Main Content Layout (2 columns) --- */
+.main-content {
+    display: flex; /* Kích hoạt Flexbox */
+    gap: var(--spacing-large); /* Khoảng cách giữa cột chính và sidebar */
+    padding-top: var(--padding-section);
+    padding-bottom: var(--padding-section);
+    align-items: flex-start; /* Các cột sẽ căn trên cùng */
+}
+
+.content-main {
+    flex: 3; /* Cột nội dung chính chiếm 3 phần (tương đối) */
+    min-width: 0; /* Cho phép nội dung bên trong co lại */
+    background-color: var(--bg-white); /* Nền trắng cho nội dung chính */
+    padding: var(--spacing-large);
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 2px 5px var(--shadow-light);
+}
+
+.sidebar {
+    flex: 1; /* Sidebar chiếm 1 phần (tương đối) */
+    background-color: var(--bg-white);
+    padding: var(--spacing-medium);
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 2px 5px var(--shadow-light);
+    min-width: 250px; /* Chiều rộng tối thiểu cho sidebar */
+    max-width: 300px; /* Chiều rộng tối đa cho sidebar */
+}
+
+.sidebar-block {
+    margin-bottom: var(--spacing-large); /* Khoảng cách giữa các khối sidebar */
+}
+
+.sidebar-block:last-child {
+    margin-bottom: 0; /* Khối cuối cùng không có margin-bottom */
+}
+
+.sidebar-block h3 {
+    font-family: var(--font-heading); /* Sẽ là Roboto */
+    font-size: 1.2em;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-small);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: var(--spacing-small);
+    display: flex; /* Để căn chỉnh icon với text */
+    align-items: center;
+    gap: var(--spacing-small); /* Khoảng cách giữa icon và text */
+}
+
+.sidebar-block ul {
+    list-style: none; /* Bỏ dấu chấm */
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-block ul li {
+    margin-bottom: 5px; /* Khoảng cách giữa các mục trong list */
+}
+
+.sidebar-block ul li a {
+    color: var(--text-dark);
+    display: block;
+    padding: 5px 0;
+    transition: color var(--transition-speed-normal) ease, padding-left var(--transition-speed-normal) ease;
+}
+
+.sidebar-block ul li a:hover {
+    color: var(--primary-color);
+    padding-left: 5px; /* Hiệu ứng nhỏ khi hover */
+}
+
+/* Style cho khối "Xem tất cả" trong Thông báo mới */
+.sidebar-block .view-all-announcements {
+    display: inline-flex; /* Để icon nằm cạnh text */
+    align-items: center;
+    gap: 5px;
+    margin-top: var(--spacing-small);
+    font-size: 0.9em;
+    color: var(--primary-color);
+}
+
+.sidebar-block .view-all-announcements:hover {
+    color: var(--secondary-color);
+}
+
+/* Style cho khối liên hệ trong sidebar */
+.contact-info-sidebar p {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.contact-info-sidebar a {
+    font-size: 0.9em;
+}
+
+/* Style cho khối dịch vụ nổi bật (service-highlight) */
+.service-highlight {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: var(--spacing-medium);
+    border-radius: var(--border-radius-base);
+    text-align: center;
+}
+
+.service-highlight h3 {
+    color: var(--primary-color); /* Màu chữ tiêu đề trong khối vàng */
+    border-bottom-color: rgba(0, 51, 102, 0.3); /* Viền màu xanh nhạt hơn */
+    margin-bottom: var(--spacing-medium);
+}
+
+.service-highlight p {
+    font-size: 0.95em;
+    margin-bottom: var(--spacing-medium);
+}
+
+.service-highlight .btn {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color var(--transition-speed-normal) ease;
+}
+
+.service-highlight .btn:hover {
+    background-color: var(--accent-blue);
+    color: var(--bg-white);
+}
+
+
+/* Responsive cho bố cục 2 cột */
+@media (max-width: 992px) { /* Trên tablet và mobile, chuyển sang 1 cột */
+    .main-content {
+        flex-direction: column; /* Xếp các cột thành một chồng */
+        align-items: center; /* Căn giữa các khối nếu cần */
+    }
+    .content-main,
+    .sidebar {
+        flex: auto; /* Chiếm toàn bộ chiều rộng có sẵn */
+        max-width: 100%; /* Đảm bảo không bị tràn */
+        width: 100%; /* Chiếm 100% width của container */
+    }
+    .sidebar {
+        order: -1; /* Đặt sidebar lên trên nội dung chính trên mobile */
+        margin-bottom: var(--spacing-large); /* Khoảng cách giữa sidebar và nội dung chính */
+    }
+}
+
+/* Style cho form (nếu bạn thêm vào section Đăng ký thăm gặp trực tuyến) */
+.contact-form {
+    background-color: var(--bg-light);
+    padding: var(--spacing-large);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--shadow-light);
+    margin-top: var(--spacing-medium);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-medium);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-small);
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-small);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-base);
+    font-size: var(--font-size-base);
+    font-family: var(--font-body);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: var(--spacing-small) var(--spacing-medium);
+    border: none;
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    transition: background-color var(--transition-speed-normal) ease;
+    text-decoration: none; /* Đảm bảo không có gạch chân nếu dùng cho <a> */
+    display: inline-block; /* Để padding hoạt động tốt */
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-blue);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: var(--spacing-small) var(--spacing-medium);
+    border: none;
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    transition: background-color var(--transition-speed-normal) ease;
+    text-decoration: none;
+    display: inline-flex; /* Cho phép icon bên trong */
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-secondary:hover {
+    background-color: #e6b800; /* Màu vàng đậm hơn */
 }
