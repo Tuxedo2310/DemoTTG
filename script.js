@@ -2,25 +2,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainNav = document.getElementById('main-nav');
     const menuToggleBtn = document.getElementById('menu-toggle-btn');
 
-    // Hàm hiển thị thời gian hiện tại
-    function updateDateTime() {
-        const now = new Date();
-        const options = {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false // Sử dụng định dạng 24 giờ
-        };
-        const dateTimeString = now.toLocaleDateString('vi-VN', options) + ' | ' + now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', hour12: false });
-        document.getElementById('current-datetime').textContent = dateTimeString.charAt(0).toUpperCase() + dateTimeString.slice(1);
-    }
+   // Hàm hiển thị thời gian hiện tại
+function updateDateTime() {
+    const now = new Date();
+    const options = {
+        weekday: 'long', // Hiển thị tên ngày trong tuần (ví dụ: Thứ Ba)
+        day: 'numeric',   // Ngày (ví dụ: 24)
+        month: 'numeric', // Tháng (ví dụ: 6)
+        year: 'numeric',  // Năm (ví dụ: 2025)
+        hour: '2-digit',  // Giờ (2 chữ số)
+        minute: '2-digit',// Phút (2 chữ số)
+        hour12: false     // Dùng định dạng 24 giờ
+    };
 
-    // Cập nhật thời gian ngay lập tức và sau mỗi phút
-    updateDateTime();
-    setInterval(updateDateTime, 60000); // Cập nhật mỗi phút
+    // Định dạng chuỗi ngày giờ đầy đủ
+    let dateTimeString = now.toLocaleDateString('vi-VN', options);
+
+    // Chuyển đổi ký tự đầu tiên của ngày trong tuần thành chữ hoa nếu cần
+    // Ví dụ: "thứ ba, 24/6/2025, 15:37" -> "Thứ ba, 24/6/2025, 15:37"
+    if (dateTimeString.length > 0) {
+        dateTimeString = dateTimeString.charAt(0).toUpperCase() + dateTimeString.slice(1);
+    }
+    
+    // Tìm phần tử hiển thị và cập nhật nội dung
+    const currentDateTimeElement = document.getElementById('current-datetime');
+    if (currentDateTimeElement) {
+        currentDateTimeElement.textContent = dateTimeString;
+    }
+}
+
+// Cập nhật thời gian ngay lập tức và sau mỗi phút
+updateDateTime();
+setInterval(updateDateTime, 60000); // Cập nhật mỗi phút
 
 
     // Xử lý menu responsive
@@ -227,5 +240,296 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         // Mặc định hiển thị tab home và sub-tab home-news
         showTab('home');
+    }
+});
+// ... (các hàm hiện có của bạn, ví dụ: updateDateTime, showSubTab) ...
+
+// Hàm chính để hiển thị tab
+function showTab(tabId) {
+    // Ẩn tất cả các tab
+    document.querySelectorAll('.tab-section').forEach(section => {
+        section.classList.add('hidden');
+    });
+
+    // Hiển thị tab được chọn
+    const activeTab = document.getElementById(tabId);
+    if (activeTab) {
+        activeTab.classList.remove('hidden');
+    }
+
+    // Cập nhật trạng thái active cho menu link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+    });
+    document.querySelectorAll('.submenu-link').forEach(link => {
+        link.classList.remove('active');
+    });
+    document.querySelectorAll('.sidebar-link').forEach(link => { // Thêm sidebar links
+        link.classList.remove('active');
+    });
+
+    // Thêm class 'active' cho link được nhấp
+    const clickedNavLink = document.querySelector(`.nav-link[data-tab-id="${tabId}"]`);
+    if (clickedNavLink) {
+        clickedNavLink.classList.add('active');
+    }
+    const clickedSubmenuLink = document.querySelector(`.submenu-link[data-tab-id="${tabId}"]`);
+    if (clickedSubmenuLink) {
+        clickedSubmenuLink.classList.add('active');
+        // Kích hoạt luôn parent link nếu là sub-tab
+        const parentLink = clickedSubmenuLink.closest('.nav-item.has-submenu')?.querySelector('.parent-link');
+        if (parentLink) {
+            parentLink.classList.add('active');
+        }
+    }
+    const clickedSidebarLink = document.querySelector(`.sidebar-link[data-tab-id="${tabId}"]`); // Kích hoạt sidebar link
+    if (clickedSidebarLink) {
+        clickedSidebarLink.classList.add('active');
+    }
+
+    // Nếu là trang chủ, đảm bảo sub-tab Tin tức hoạt động được hiển thị
+    if (tabId === 'home') {
+        showSubTab('home-news', 'home-sub-tabs');
+    }
+}
+
+// Xử lý sự kiện click cho các liên kết trong sidebar
+document.querySelectorAll('.sidebar-link, .view-all-announcements, .service-highlight .btn').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const tabId = this.dataset.tabId;
+        if (tabId) {
+            showTab(tabId);
+            // Cuộn lên đầu trang khi chuyển tab từ sidebar
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        // Đóng menu di động nếu đang mở
+        const mainNav = document.getElementById('main-nav');
+        if (mainNav.classList.contains('active')) {
+            mainNav.classList.remove('active');
+        }
+        // Đóng submenu nếu có
+        document.querySelectorAll('.nav-item.has-submenu').forEach(item => {
+            item.classList.remove('active-submenu');
+            if (window.innerWidth > 768) { // Đảm bảo ẩn submenu desktop
+                item.querySelector('.submenu').style.display = 'none';
+            }
+        });
+    });
+});
+
+// ... (các sự kiện click cho nav-link, sub-tab-link, news-card, menu toggle giữ nguyên hoặc đã được sửa ở câu trả lời trước) ...
+
+// Hiển thị tab "Trang chủ" và "Tin tức hoạt động" khi tải trang lần đầu
+document.addEventListener('DOMContentLoaded', () => {
+    showTab('home');
+    showSubTab('home-news', 'home-sub-tabs'); // Đảm bảo sub-tab "Tin tức hoạt động" hiển thị mặc định
+    
+    // ... (logic updateDateTime và menuToggleBtn hiện có của bạn) ...
+});
+// Đảm bảo rằng hàm này nằm ở phạm vi toàn cục hoặc được gọi sau khi DOM đã tải hoàn chỉnh.
+// Cách tốt nhất là đặt nó trong một hàm khởi tạo hoặc lắng nghe sự kiện DOMContentLoaded.
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Định nghĩa hàm showSubTab
+    function showSubTab(tabId, tabGroup) {
+        // Ẩn tất cả các tab content trong cùng một nhóm
+        document.querySelectorAll(`.sub-tab-content[data-tab-group="${tabGroup}"]`).forEach(content => {
+            content.classList.remove('active');
+            content.classList.add('hidden');
+        });
+
+        // Xóa lớp 'active' khỏi tất cả các tab link trong cùng một nhóm
+        document.querySelectorAll(`.sub-tab-link[data-tab-group="${tabGroup}"]`).forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // Hiển thị tab content được chọn
+        const activeContent = document.getElementById(tabId);
+        if (activeContent) {
+            activeContent.classList.add('active');
+            activeContent.classList.remove('hidden');
+        }
+
+        // Đánh dấu tab link được chọn là 'active'
+        const activeLink = document.querySelector(`.sub-tab-link[data-tab-id="${tabId}"][data-tab-group="${tabGroup}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
+
+        // Ghi log để kiểm tra (có thể xóa sau khi sửa lỗi)
+        console.log("showSubTab called with ID:", tabId);
+    }
+
+    // Lắng nghe sự kiện click cho các tab con
+    document.querySelectorAll('.sub-tab-link').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ 'a'
+            const tabId = this.getAttribute('data-tab-id');
+            const tabGroup = this.getAttribute('data-tab-group');
+            showSubTab(tabId, tabGroup);
+        });
+    });
+
+    // Lắng nghe sự kiện click cho các tab chính (nếu có)
+    document.querySelectorAll('.tab-link').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const tabId = this.getAttribute('data-tab-id');
+            showTab(tabId); // Giả định bạn đã có hàm showTab cho các tab chính
+        });
+    });
+
+    // Định nghĩa hàm showTab cho các tab chính (nếu chưa có)
+    function showTab(tabId) {
+        // Ẩn tất cả các section chính
+        document.querySelectorAll('.tab-section').forEach(section => {
+            section.classList.remove('active');
+            section.classList.add('hidden');
+        });
+
+        // Xóa lớp 'active' khỏi tất cả các tab link chính
+        document.querySelectorAll('.tab-navigation .nav-item .nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // Hiển thị section được chọn
+        const activeSection = document.getElementById(tabId);
+        if (activeSection) {
+            activeSection.classList.add('active');
+            activeSection.classList.remove('hidden');
+        }
+
+        // Đánh dấu tab link chính được chọn là 'active'
+        const activeLink = document.querySelector(`.tab-navigation .nav-item .nav-link[data-tab-id="${tabId}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
+        console.log("showTab called with ID:", tabId);
+    }
+
+    // Xử lý khi tải trang lần đầu để hiển thị tab mặc định
+    // Kiểm tra hash trong URL để hiển thị tab chính xác
+    const initialHash = window.location.hash.substring(1);
+    if (initialHash) {
+        // Cố gắng hiển thị như một sub-tab trước
+        let foundSubTab = false;
+        document.querySelectorAll('.sub-tab-content').forEach(subTab => {
+            if (subTab.id === initialHash) {
+                const tabGroup = subTab.getAttribute('data-tab-group');
+                showSubTab(initialHash, tabGroup);
+                foundSubTab = true;
+            }
+        });
+
+        // Nếu không phải sub-tab, thử hiển thị như một tab chính
+        if (!foundSubTab) {
+            document.querySelectorAll('.tab-section').forEach(mainTab => {
+                if (mainTab.id === initialHash) {
+                    showTab(initialHash);
+                }
+            });
+        }
+    } else {
+        // Mặc định hiển thị tab home và sub-tab home-news
+        showTab('home');
+        showSubTab('home-news', 'home-sub-tabs');
+    }
+});
+document.addEventListener('DOMContentLoaded', function() {
+    // Định nghĩa hàm showTab cho các tab chính
+    function showTab(tabId) {
+        // Xóa lớp 'active' khỏi tất cả các tab content chính và ẩn chúng
+        document.querySelectorAll('.main-content-container section').forEach(section => {
+            section.classList.remove('active');
+            section.style.display = 'none'; // Hoặc thêm lớp 'hidden' tùy vào CSS của bạn
+        });
+
+        // Xóa lớp 'active' khỏi tất cả các tab link chính
+        document.querySelectorAll('.main-nav .nav-item .nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // Hiển thị tab content được chọn và thêm lớp 'active' cho nó
+        const activeSection = document.getElementById(tabId);
+        if (activeSection) {
+            activeSection.classList.add('active');
+            activeSection.style.display = 'block'; // Hoặc xóa lớp 'hidden'
+        }
+
+        // Đánh dấu tab link chính được chọn là 'active'
+        const activeLink = document.querySelector(`.main-nav .nav-item .nav-link[data-tab-id="${tabId}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
+        console.log("showTab called with ID:", tabId);
+    }
+
+    // Định nghĩa hàm showSubTab cho các tab con (sidebar links)
+    function showSubTab(tabId) {
+        // Ẩn tất cả các sub-tab content trong cùng section home
+        document.querySelectorAll('#home .sub-tab-content').forEach(content => {
+            content.classList.remove('active');
+            content.style.display = 'none';
+        });
+
+        // Xóa lớp 'active' khỏi tất cả các sidebar link
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // Hiển thị sub-tab content được chọn
+        const activeContent = document.getElementById(tabId);
+        if (activeContent) {
+            activeContent.classList.add('active');
+            activeContent.style.display = 'block';
+        }
+
+        // Đánh dấu sub-tab link được chọn là 'active'
+        const activeLink = document.querySelector(`.sidebar-link[data-tab-id="${tabId}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
+        console.log("showSubTab called with ID:", tabId);
+    }
+
+    // Lắng nghe sự kiện click cho các tab chính
+    document.querySelectorAll('.main-nav .nav-item .nav-link').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ 'a'
+            const tabId = this.getAttribute('data-tab-id');
+            showTab(tabId);
+        });
+    });
+
+    // Lắng nghe sự kiện click cho các tab con trong sidebar
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ 'a'
+            const tabId = this.getAttribute('data-tab-id');
+            showSubTab(tabId);
+        });
+    });
+
+    // Xử lý khi tải trang lần đầu để hiển thị tab mặc định
+    const initialHash = window.location.hash.substring(1);
+    if (initialHash) {
+        // Kiểm tra xem đây có phải là một sub-tab (sidebar link) hay không
+        const isSubTab = document.querySelector(`.sidebar-link[data-tab-id="${initialHash}"]`);
+        if (isSubTab) {
+            showSubTab(initialHash);
+            // Đảm bảo tab chính chứa sub-tab này cũng được hiển thị (nếu cần)
+            const mainTabId = isSubTab.closest('section[id]').id; // Lấy ID của section cha
+            if (mainTabId) {
+                showTab(mainTabId);
+            }
+        } else {
+            // Nếu không phải sub-tab, thử hiển thị như một tab chính
+            showTab(initialHash);
+        }
+    } else {
+        // Mặc định hiển thị tab 'home' và sub-tab 'home-news' (hoặc 'tin-tuc' tùy theo ID thực tế)
+        showTab('home');
+        showSubTab('home-news'); // Đảm bảo ID này khớp với data-tab-id trong HTML của bạn
     }
 });
