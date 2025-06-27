@@ -1,29 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Hiển thị thời gian
+    // Cập nhật ngày giờ
     function updateDateTime() {
         const now = new Date();
         const options = {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false
+            weekday: 'long', day: 'numeric', month: 'numeric', year: 'numeric',
+            hour: '2-digit', minute: '2-digit', hour12: false
         };
         let dateTimeString = now.toLocaleDateString('vi-VN', options);
-        if (dateTimeString.length > 0) {
+        if (dateTimeString.length > 0)
             dateTimeString = dateTimeString.charAt(0).toUpperCase() + dateTimeString.slice(1);
-        }
         const currentDateTimeElement = document.getElementById('current-datetime');
         if (currentDateTimeElement) currentDateTimeElement.textContent = dateTimeString;
     }
-    updateDateTime();
-    setInterval(updateDateTime, 60000);
+    updateDateTime(); setInterval(updateDateTime, 60000);
 
+    // Responsive menu toggle
     const mainNav = document.getElementById('main-nav');
     const menuToggleBtn = document.getElementById('menu-toggle-btn');
-
     if (menuToggleBtn) {
         menuToggleBtn.addEventListener('click', function() {
             mainNav.classList.toggle('active');
@@ -38,46 +31,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Hàm chính xử lý chuyển tab, luôn mở lại submenu nếu cần
+    // Hàm showTab (hỗ trợ mở lại menu cha khi cần)
     function showTab(tabId) {
-        // 1. Ẩn tất cả các section
+        // 1. Ẩn tất cả tab-section
         document.querySelectorAll('.tab-section').forEach(section => {
             section.classList.add('hidden');
             section.classList.remove('active');
         });
 
         // 2. Xóa trạng thái active của tất cả nav-link, submenu-link, sub-tab-link, sidebar-link
-        document.querySelectorAll('.nav-link, .submenu-link, .sub-tab-link, .sidebar-link').forEach(link => {
+        document.querySelectorAll('.nav-link, .submenu-link, .sub-tab-link, .sidebar-link, .sub-submenu-link').forEach(link => {
             link.classList.remove('active');
         });
-        // Đóng mọi submenu
-        document.querySelectorAll('.nav-item.has-submenu').forEach(item => item.classList.remove('open'));
 
-        // 3. Xử lý sub-tab (dạng trong trang home)
+        // 3. Đóng mọi submenu menu cha
+        document.querySelectorAll('.nav-item.has-submenu').forEach(item => item.classList.remove('open'));
+        // Đóng sub-submenu nếu có
+        document.querySelectorAll('.submenu-item.has-submenu-level2').forEach(item => item.classList.remove('open'));
+
+        // 4. Xử lý sub-tab trong trang home
         if (tabId === 'home' || tabId === 'home-news' || tabId === 'huong-dan-tham-gap') {
             document.getElementById('home').classList.remove('hidden');
             document.getElementById('home').classList.add('active');
             document.querySelector('#home .sub-tab-navigation')?.classList.remove('hidden');
-
-            // Hiện sub-tab content
+            // Hiện đúng sub-tab
+            let subTabId = 'home-news';
+            if (tabId === 'huong-dan-tham-gap') subTabId = 'huong-dan-tham-gap';
             document.querySelectorAll('#home .sub-tab-content').forEach(subContent => {
                 subContent.classList.add('hidden');
                 subContent.classList.remove('active');
             });
-
-            // Hiện đúng sub-tab
-            let subTabId = 'home-news';
-            if (tabId === 'huong-dan-tham-gap') subTabId = 'huong-dan-tham-gap';
             document.getElementById(subTabId)?.classList.remove('hidden');
             document.getElementById(subTabId)?.classList.add('active');
             document.querySelector(`.sub-tab-link[data-tab-id="${subTabId}"]`)?.classList.add('active');
-
-            // Active nav Home
             document.querySelector('.nav-link[data-tab-id="home"]')?.classList.add('active');
-            // Nếu click từ sidebar thì active sidebar-link
             document.querySelector(`.sidebar-link[data-tab-id="${tabId}"]`)?.classList.add('active');
         }
-        // 4. Nếu là bài news chi tiết
+        // 5. Nếu là bài news chi tiết
         else if (tabId.startsWith('news-')) {
             document.getElementById('home').classList.remove('hidden');
             document.getElementById('home').classList.add('active');
@@ -88,23 +78,38 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.nav-link[data-tab-id="home"]')?.classList.add('active');
             document.querySelector('.sub-tab-link[data-tab-id="home-news"]')?.classList.add('active');
         }
-        // 5. Tab thuộc submenu (giới thiệu, lãnh đạo, các đội, ...)
+        // 6. Các tab thông thường khác
         else {
-            // Hiện section
             document.getElementById(tabId)?.classList.remove('hidden');
             document.getElementById(tabId)?.classList.add('active');
 
             // Kích hoạt nav-link hoặc submenu-link (tùy)
-            let activeLink = document.querySelector(`.nav-link[data-tab-id="${tabId}"]`) ||
-                             document.querySelector(`.submenu-link[data-tab-id="${tabId}"]`);
+            let activeLink =
+                document.querySelector(`.nav-link[data-tab-id="${tabId}"]`) ||
+                document.querySelector(`.submenu-link[data-tab-id="${tabId}"]`) ||
+                document.querySelector(`.sub-submenu-link[data-tab-id="${tabId}"]`);
             if (activeLink) {
                 activeLink.classList.add('active');
-                // Nếu là submenu-link thì mở lại submenu cha
+                // Nếu là submenu-link thì mở lại menu cha
                 if (activeLink.classList.contains('submenu-link')) {
                     const parentNav = activeLink.closest('.nav-item.has-submenu');
                     if (parentNav) {
                         parentNav.classList.add('open');
                         parentNav.querySelector('.parent-link')?.classList.add('active');
+                    }
+                }
+                // Nếu là sub-submenu-link thì phải mở cả menu cấp 1 và menu cấp 2
+                if (activeLink.classList.contains('sub-submenu-link')) {
+                    const sub2 = activeLink.closest('.submenu-item.has-submenu-level2');
+                    if (sub2) {
+                        sub2.classList.add('open');
+                        sub2.querySelector('.parent-link-level2')?.classList.add('active');
+                        // Mở luôn menu cha cấp 1
+                        const parentNav = sub2.closest('.nav-item.has-submenu');
+                        if (parentNav) {
+                            parentNav.classList.add('open');
+                            parentNav.querySelector('.parent-link')?.classList.add('active');
+                        }
                     }
                 }
             }
@@ -120,8 +125,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Gán click cho nav-link, submenu-link, sub-tab-link, sidebar-link, news-card .read-more
-    document.querySelectorAll('.nav-link:not(.parent-link), .submenu-link, .sub-tab-link, .sidebar-link, .news-card .read-more, .news-card .news-title a').forEach(link => {
+    // Gán click cho nav-link, submenu-link, sub-tab-link, sidebar-link, news-card .read-more, sub-submenu-link
+    document.querySelectorAll(
+        '.nav-link:not(.parent-link), .submenu-link, .sub-tab-link, .sidebar-link, .news-card .read-more, .news-card .news-title a, .sub-submenu-link'
+    ).forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const tabId = this.dataset.tabId;
@@ -132,12 +139,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Xử lý menu dropdown (mở/đóng) cho .parent-link
+    // Xử lý menu dropdown cha cấp 1 (.parent-link)
     document.querySelectorAll('.nav-item.has-submenu > .parent-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const parentItem = this.closest('.has-submenu');
             document.querySelectorAll('.nav-item.has-submenu.open').forEach(item => {
+                if (item !== parentItem) item.classList.remove('open');
+            });
+            parentItem.classList.toggle('open');
+        });
+    });
+
+    // Xử lý menu dropdown cấp 2 nếu có (.parent-link-level2)
+    document.querySelectorAll('.submenu-item.has-submenu-level2 > .parent-link-level2').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const parentItem = this.closest('.submenu-item.has-submenu-level2');
+            document.querySelectorAll('.submenu-item.has-submenu-level2.open').forEach(item => {
                 if (item !== parentItem) item.classList.remove('open');
             });
             parentItem.classList.toggle('open');
