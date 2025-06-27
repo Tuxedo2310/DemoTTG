@@ -1383,7 +1383,12 @@ body {
 .btn-secondary:hover {
     background-color: #e6b800; /* Màu vàng đậm hơn */
 }
+
+/* ... (toàn bộ phần CSS phía trên GIỮ NGUYÊN) ... */
+
 /* ========== SUBMENU CẤP 2 (Hiện khi hover chuột hoặc khi có class .open) ========== */
+/* Đặt DUY NHẤT đoạn này ở cuối file, và XÓA hết các đoạn .sub-submenu, .submenu-item.has-submenu-level2 bị lặp khác */
+
 .submenu-item.has-submenu-level2 {
     position: relative;
 }
