@@ -1383,3 +1383,50 @@ body {
 .btn-secondary:hover {
     background-color: #e6b800; /* Màu vàng đậm hơn */
 }
+/* ========== SUBMENU CẤP 2 (Hiện khi hover chuột hoặc khi có class .open) ========== */
+.submenu-item.has-submenu-level2 {
+    position: relative;
+}
+.sub-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    min-width: 200px;
+    background: #fff;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+    z-index: 9999;
+    padding: 0;
+    list-style: none;
+    border-radius: 0 8px 8px 0;
+}
+@media (min-width: 769px) {
+    .submenu-item.has-submenu-level2:hover > .sub-submenu {
+        display: block;
+    }
+}
+.submenu-item.has-submenu-level2.open > .sub-submenu {
+    display: block;
+}
+.sub-submenu li a {
+    color: var(--primary-color);
+    padding: 10px 20px;
+    display: block;
+    white-space: nowrap;
+    transition: background .2s;
+}
+.sub-submenu li a:hover {
+    background: var(--accent-blue);
+    color: var(--secondary-color);
+}
+@media (max-width: 768px) {
+    .sub-submenu {
+        position: static;
+        left: 0;
+        top: auto;
+        min-width: 100%;
+        background: var(--accent-blue);
+        box-shadow: none;
+        border-radius: 0;
+    }
+}
