@@ -49,14 +49,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Đóng sub-submenu nếu có
         document.querySelectorAll('.submenu-item.has-submenu-level2').forEach(item => item.classList.remove('open'));
 
-        // 4. Xử lý sub-tab trong trang home
-        if (tabId === 'home' || tabId === 'home-news' || tabId === 'huong-dan-tham-gap') {
+        // 4. Xử lý sub-tab trong trang home (KHÔNG xử lý cho huong-dan-tham-gap là section riêng)
+        if (tabId === 'home' || tabId === 'home-news') {
             document.getElementById('home').classList.remove('hidden');
             document.getElementById('home').classList.add('active');
             document.querySelector('#home .sub-tab-navigation')?.classList.remove('hidden');
             // Hiện đúng sub-tab
             let subTabId = 'home-news';
-            if (tabId === 'huong-dan-tham-gap') subTabId = 'huong-dan-tham-gap';
+            if (tabId === 'home-news') subTabId = 'home-news';
             document.querySelectorAll('#home .sub-tab-content').forEach(subContent => {
                 subContent.classList.add('hidden');
                 subContent.classList.remove('active');
@@ -78,19 +78,16 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.nav-link[data-tab-id="home"]')?.classList.add('active');
             document.querySelector('.sub-tab-link[data-tab-id="home-news"]')?.classList.add('active');
         }
-        // 6. Các tab thông thường khác
+        // 6. Các tab thông thường khác (bao gồm huong-dan-tham-gap, mission, history, ...)
         else {
             document.getElementById(tabId)?.classList.remove('hidden');
             document.getElementById(tabId)?.classList.add('active');
-
-            // Kích hoạt nav-link hoặc submenu-link (tùy)
             let activeLink =
                 document.querySelector(`.nav-link[data-tab-id="${tabId}"]`) ||
                 document.querySelector(`.submenu-link[data-tab-id="${tabId}"]`) ||
                 document.querySelector(`.sub-submenu-link[data-tab-id="${tabId}"]`);
             if (activeLink) {
                 activeLink.classList.add('active');
-                // Nếu là submenu-link thì mở lại menu cha
                 if (activeLink.classList.contains('submenu-link')) {
                     const parentNav = activeLink.closest('.nav-item.has-submenu');
                     if (parentNav) {
@@ -98,13 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         parentNav.querySelector('.parent-link')?.classList.add('active');
                     }
                 }
-                // Nếu là sub-submenu-link thì phải mở cả menu cấp 1 và menu cấp 2
                 if (activeLink.classList.contains('sub-submenu-link')) {
                     const sub2 = activeLink.closest('.submenu-item.has-submenu-level2');
                     if (sub2) {
                         sub2.classList.add('open');
                         sub2.querySelector('.parent-link-level2')?.classList.add('active');
-                        // Mở luôn menu cha cấp 1
                         const parentNav = sub2.closest('.nav-item.has-submenu');
                         if (parentNav) {
                             parentNav.classList.add('open');
@@ -113,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             }
-            // Nếu click từ sidebar thì active sidebar-link
             document.querySelector(`.sidebar-link[data-tab-id="${tabId}"]`)?.classList.add('active');
         }
 
@@ -130,12 +124,14 @@ document.addEventListener('DOMContentLoaded', function() {
         '.nav-link:not(.parent-link), .submenu-link, .sub-tab-link, .sidebar-link, .news-card .read-more, .news-card .news-title a, .sub-submenu-link'
     ).forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
             const tabId = this.dataset.tabId;
-            if (tabId) {
+            // Chỉ preventDefault và showTab nếu tabId là section nội bộ
+            if (tabId && document.getElementById(tabId)) {
+                e.preventDefault();
                 showTab(tabId);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+            // Nếu là link ngoài (vd: Xem bản đồ) thì để mặc định cho trình duyệt xử lý
         });
     });
 
@@ -179,4 +175,24 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         showTab('home');
     }
+});
+
+// Mở/đóng submenu cấp 1 (menu cha) trên mobile
+document.querySelectorAll('.has-submenu > .nav-link').forEach(function(link){
+    link.addEventListener('click', function(e){
+        if(window.innerWidth <= 768) {
+            e.preventDefault();
+            this.parentElement.classList.toggle('open');
+        }
+    });
+});
+
+// Mở/đóng submenu cấp 2 trên mobile
+document.querySelectorAll('.has-submenu-level2 > a').forEach(function(link){
+    link.addEventListener('click', function(e){
+        if(window.innerWidth <= 768) {
+            e.preventDefault();
+            this.parentElement.classList.toggle('open');
+        }
+    });
 });
