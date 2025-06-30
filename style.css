@@ -190,26 +190,26 @@ ul {
     }
 }
 @media (max-width: 768px) {
-    .current-datetime {
-        position: static; /* Stack naturally in mobile layout */
-        width: auto; /* Allow width to be natural */
-        margin-left: var(--spacing-small); /* Push to right if space available */
-        padding: 3px 8px; /* Giảm padding */
-        background-color: transparent; /* No background in mobile header */
-        color: var(--text-light); /* White text in mobile header */
-        font-size: 0.75em;
-        text-align: right;
-    }
-    .header-content {
-        flex-wrap: nowrap; /* Prevent wrapping in mobile header to keep toggle on right */
-        justify-content: space-between;
-    }
     .site-title {
-        display: none; /* Hide full title on small screens */
+        display: block;
+        min-width: 0;
+        max-width: 65vw;
+        text-align: left;
+        margin-left: 8px;
     }
-    .logo-area {
-        flex-grow: 1; /* Allow logo area to grow to push datetime/toggle */
-        justify-content: flex-start;
+    .site-title h1 {
+        font-size: 1.1em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
+    }
+    .site-title h2 {
+        font-size: 0.9em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
     }
 }
 
