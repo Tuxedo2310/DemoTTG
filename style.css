@@ -1399,3 +1399,50 @@ body {
     display: block;
   }
 }
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .header-left,
+  .header-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo-area {
+    flex-direction: column;
+    align-items: center;
+  }
+  .site-title h1 {
+    font-size: 1.2rem; /* nhỏ lại cho vừa màn hình */
+    margin: 0;
+    line-height: 1.2;
+  }
+  .current-datetime {
+    margin-top: 5px;
+    font-size: 0.95em;
+    width: 100%;
+    text-align: center;
+    order: 3;
+  }
+  .search-bar {
+    margin: 10px 0;
+    width: 90%;
+    justify-content: center;
+  }
+}
+@media (max-width: 768px) {
+  .site-title {
+    text-align: center;
+    margin: 0;
+  }
+  .site-title h1 {
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+  }
+}
