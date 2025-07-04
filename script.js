@@ -231,3 +231,11 @@ document.querySelectorAll('.back-to-news').forEach(function(btn) {
     document.getElementById('home-news').scrollIntoView({behavior: 'smooth'});
   });
 });
+document.querySelectorAll('.nav-item.has-submenu > .parent-link').forEach(function(link){
+    link.addEventListener('click', function(e){
+        if(window.innerWidth <= 768) {
+            e.preventDefault();
+            this.parentElement.classList.toggle('open');
+        }
+    });
+});
