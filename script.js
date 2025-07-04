@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Mở/đóng submenu cấp 1 (menu cha) trên mobile
-document.querySelectorAll('.has-submenu > .nav-link').forEach(function(link){
+document.querySelectorAll('.has-submenu > .parent-link').forEach(function(link){
     link.addEventListener('click', function(e){
         if(window.innerWidth <= 768) {
             e.preventDefault();
