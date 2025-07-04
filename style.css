@@ -204,9 +204,7 @@ ul {
         flex-wrap: nowrap; /* Prevent wrapping in mobile header to keep toggle on right */
         justify-content: space-between;
     }
-    .site-title {
-        display: none; /* Hide full title on small screens */
-    }
+
     .logo-area {
         flex-grow: 1; /* Allow logo area to grow to push datetime/toggle */
         justify-content: flex-start;
@@ -680,9 +678,7 @@ ul {
         flex-grow: 1;
         justify-content: flex-start;
     }
-    .site-title {
-        display: none;
-    }
+   
     .logo {
         height: 60px;
     }
@@ -1444,5 +1440,22 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.2;
+  }
+}
+@media (max-width: 768px) {
+  .site-title {
+    display: block !important;    /* BẮT BUỘC phải thêm dòng này */
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .site-title h1 {
+    font-size: 1.1rem !important;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
   }
 }
