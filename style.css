@@ -1383,3 +1383,8 @@ body {
 .btn-secondary:hover {
     background-color: #e6b800; /* Màu vàng đậm hơn */
 }
+@media (max-width: 768px) {
+  aside.sidebar {
+    display: none !important;
+  }
+}
