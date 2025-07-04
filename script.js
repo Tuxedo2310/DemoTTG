@@ -50,23 +50,22 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.submenu-item.has-submenu-level2').forEach(item => item.classList.remove('open'));
 
         // 4. Xử lý sub-tab trong trang home (KHÔNG xử lý cho huong-dan-tham-gap là section riêng)
-        if (tabId === 'home' || tabId === 'home-news') {
-            document.getElementById('home').classList.remove('hidden');
-            document.getElementById('home').classList.add('active');
-            document.querySelector('#home .sub-tab-navigation')?.classList.remove('hidden');
-            // Hiện đúng sub-tab
-            let subTabId = 'home-news';
-            if (tabId === 'home-news') subTabId = 'home-news';
-            document.querySelectorAll('#home .sub-tab-content').forEach(subContent => {
-                subContent.classList.add('hidden');
-                subContent.classList.remove('active');
-            });
-            document.getElementById(subTabId)?.classList.remove('hidden');
-            document.getElementById(subTabId)?.classList.add('active');
-            document.querySelector(`.sub-tab-link[data-tab-id="${subTabId}"]`)?.classList.add('active');
-            document.querySelector('.nav-link[data-tab-id="home"]')?.classList.add('active');
-            document.querySelector(`.sidebar-link[data-tab-id="${tabId}"]`)?.classList.add('active');
-        }
+        if (tabId === 'home' || tabId === 'home-news' || tabId === 'noi-quy-co-so-giam-giu') {
+    document.getElementById('home').classList.remove('hidden');
+    document.getElementById('home').classList.add('active');
+    document.querySelector('#home .sub-tab-navigation')?.classList.remove('hidden');
+    // Hiện đúng sub-tab
+    let subTabId = tabId === 'home' ? 'home-news' : tabId;
+    document.querySelectorAll('#home .sub-tab-content').forEach(subContent => {
+        subContent.classList.add('hidden');
+        subContent.classList.remove('active');
+    });
+    document.getElementById(subTabId)?.classList.remove('hidden');
+    document.getElementById(subTabId)?.classList.add('active');
+    document.querySelector(`.sub-tab-link[data-tab-id="${subTabId}"]`)?.classList.add('active');
+    document.querySelector('.nav-link[data-tab-id="home"]')?.classList.add('active');
+    document.querySelector(`.sidebar-link[data-tab-id="${tabId}"]`)?.classList.add('active');
+}
         // 5. Nếu là bài news chi tiết
         else if (tabId.startsWith('news-')) {
             document.getElementById('home').classList.remove('hidden');
@@ -110,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             document.querySelector(`.sidebar-link[data-tab-id="${tabId}"]`)?.classList.add('active');
         }
+        
 
         // Đóng menu mobile khi chuyển tab
         if (mainNav.classList.contains('active')) {
@@ -195,4 +195,39 @@ document.querySelectorAll('.has-submenu-level2 > a').forEach(function(link){
             this.parentElement.classList.toggle('open');
         }
     });
+});
+// Tự động đóng submenu khi di chuột ra khỏi menu cha trên desktop
+document.querySelectorAll('.nav-item.has-submenu').forEach(function(item) {
+    item.addEventListener('mouseleave', function() {
+        if (window.innerWidth > 768) {
+            item.classList.remove('open');
+        }
+    });
+});
+// Nếu có submenu cấp 2
+document.querySelectorAll('.submenu-item.has-submenu-level2').forEach(function(item) {
+    item.addEventListener('mouseleave', function() {
+        if (window.innerWidth > 768) {
+            item.classList.remove('open');
+        }
+    });
+});
+document.querySelectorAll('.back-to-news').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelectorAll('.tab-section').forEach(function(sec) {
+      sec.classList.add('hidden');
+      sec.classList.remove('active');
+    });
+    document.getElementById('home').classList.remove('hidden');
+    document.getElementById('home').classList.add('active');
+    document.getElementById('home-news').classList.remove('hidden');
+    document.getElementById('home-news').classList.add('active');
+    document.querySelectorAll('.sub-tab-link').forEach(function(link) {
+      link.classList.remove('active');
+      if (link.getAttribute('data-tab-id') === 'home-news') link.classList.add('active');
+    });
+    window.location.hash = "#home-news";
+    document.getElementById('home-news').scrollIntoView({behavior: 'smooth'});
+  });
 });
